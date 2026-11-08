@@ -1,0 +1,58 @@
+/* Custom Cyber-Glass Theme & Clean Animations */
+body {
+    background-color: #07090e;
+    color: #f8fafc;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+}
+
+.glass-nav {
+    background: rgba(7, 9, 14, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-card {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(7, 9, 14, 0.8) 100%);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.glass-box {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+}
+
+/* Custom Slow Spin Animation for Logo */
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+    animation: spinSlow 12s linear infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #07090e;
+}
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #38bdf8;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

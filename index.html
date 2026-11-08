@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="hi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBSE 12th Merit Engine PRO | Sunny Boss Edition</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            dark: '#07090e',
+                            card: '#0f172a',
+                            accent: '#38bdf8',
+                            purple: '#8b5cf6',
+                            emerald: '#10b981',
+                            amber: '#f59e0b',
+                            rose: '#f43f5e'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-cyber-dark text-slate-100 font-['Plus_Jakarta_Sans'] antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-slate-950">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 glass-nav border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+            
+            <!-- Logo Section with Artistic Micro Signature -->
+            <div class="flex items-center gap-3">
+                <div class="relative group cursor-pointer">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-sky-500 via-purple-600 to-emerald-500 rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+                    <div class="relative bg-cyber-dark border border-slate-700 p-2.5 rounded-xl flex items-center justify-center text-sky-400 font-black text-xl shadow-inner">
+                        <i class="fa-solid fa-atom text-xl animate-spin-slow"></i>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-base sm:text-lg tracking-tight text-white flex items-center gap-2">
+                        HBSE 12th Merit Hub <span class="text-[10px] bg-sky-500/10 text-sky-400 px-2 py-0.5 rounded-full border border-sky-500/20 font-bold">2026-27</span>
+                    </h1>
+                    <!-- Micro Signature: Architect Sunny Boss -->
+                    <p class="text-[10px] text-slate-500 font-mono tracking-widest hover:text-sky-400 transition cursor-default" title="System Architect: Sunny Boss">SYS_ARCH // S.B. 12.05</p>
+                </div>
+            </div>
+
+            <!-- Header Controls (Language Switcher & Status) -->
+            <div class="flex items-center gap-3">
+                <!-- Language Switcher Button -->
+                <button onclick="toggleLanguage()" id="lang-toggle-btn" class="bg-slate-800 hover:bg-slate-700 text-sky-400 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-2">
+                    <i class="fa-solid fa-language text-sm"></i> <span id="lang-label">English</span>
+                </button>
+
+                <span class="hidden sm:inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 text-xs px-3 py-1.5 rounded-full border border-emerald-500/20 font-semibold">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Live Node
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-grow w-full space-y-6">
+
+        <!-- Banner Countdown -->
+        <section class="glass-card rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-slate-900/90 via-slate-900/40 to-sky-950/30 border border-slate-800 shadow-2xl relative overflow-hidden">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-6 relative z-10">
+                <div class="text-center lg:text-left">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20" data-key="mission">Mission 90%+ HBSE Board</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-3 tracking-tight" data-key="banner-title">हरियाणा बोर्ड 12वीं परीक्षा काउंटडाउन</h2>
+                    <p class="text-slate-400 text-sm mt-1 max-w-xl" data-key="banner-subtitle">भौतिकी, रसायन, गणित, कंप्यूटर, हिंदी एवं अंग्रेजी की संपूर्ण तैयारी एक स्थान पर।</p>
+                </div>
+                <!-- Countdown Grid -->
+                <div class="grid grid-cols-4 gap-2.5 sm:gap-4 text-center w-full lg:w-auto">
+                    <div class="glass-box p-3 sm:p-4 rounded-xl border border-slate-800 min-w-[70px] sm:min-w-[85px]">
+                        <span id="timer-days" class="block text-2xl sm:text-3xl font-black text-sky-400">111</span>
+                        <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold" data-key="unit-days">दिन</span>
+                    </div>
+                    <div class="glass-box p-3 sm:p-4 rounded-xl border border-slate-800 min-w-[70px] sm:min-w-[85px]">
+                        <span id="timer-hours" class="block text-2xl sm:text-3xl font-black text-white">00</span>
+                        <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold" data-key="unit-hours">घंटे</span>
+                    </div>
+                    <div class="glass-box p-3 sm:p-4 rounded-xl border border-slate-800 min-w-[70px] sm:min-w-[85px]">
+                        <span id="timer-mins" class="block text-2xl sm:text-3xl font-black text-white">00</span>
+                        <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold" data-key="unit-mins">मिनट</span>
+                    </div>
+                    <div class="glass-box p-3 sm:p-4 rounded-xl border border-slate-800 min-w-[70px] sm:min-w-[85px]">
+                        <span id="timer-secs" class="block text-2xl sm:text-3xl font-black text-amber-400">00</span>
+                        <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold" data-key="unit-secs">सेकंड</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Section Navigation Tabs -->
+        <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-slate-800">
+            <button onclick="switchTab('high-yield')" id="tab-high-yield" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-sky-500 text-slate-950 flex items-center gap-2 whitespace-nowrap shadow-lg shadow-sky-500/20 transition-all">
+                <i class="fa-solid fa-bullseye"></i> <span data-key="tab-notes">Zero-to-Hero High-Yield Topics</span>
+            </button>
+            <button onclick="switchTab('youtube')" id="tab-youtube" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap border border-slate-800 transition-all">
+                <i class="fa-solid fa-video text-red-500"></i> <span data-key="tab-youtube">YouTube One-Shot Lectures</span>
+            </button>
+            <button onclick="switchTab('scheduler')" id="tab-scheduler" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap border border-slate-800 transition-all">
+                <i class="fa-solid fa-calendar-check text-emerald-400"></i> <span data-key="tab-schedule">Smart Scheduler</span>
+            </button>
+            <button onclick="switchTab('papers')" id="tab-papers" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap border border-slate-800 transition-all">
+                <i class="fa-solid fa-file-pdf text-amber-400"></i> <span data-key="tab-papers">Direct HBSE Board Papers</span>
+            </button>
+        </div>
+
+        <!-- TAB CONTENT 1: High Yield Checklists (All Subjects) -->
+        <section id="content-high-yield" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                
+                <!-- Physics -->
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-sky-500/40 transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-base text-sky-400 flex items-center gap-2"><i class="fa-solid fa-atom"></i> Physics</h3>
+                            <span class="text-[10px] bg-sky-500/10 text-sky-400 px-2 py-0.5 rounded font-bold">Priority 1</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-300">
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-sky-500 rounded"> <span>Lens Maker Formula & Optics Derivations</span></li>
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-sky-500 rounded"> <span>Gauss Theorem Applications</span></li>
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-sky-500 rounded"> <span>AC Generator & Transformers</span></li>
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-sky-500 rounded"> <span>pn Junction Diode & Semiconductors</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Chemistry -->
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-emerald-500/40 transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-base text-emerald-400 flex items-center gap-2"><i class="fa-solid fa-flask"></i> Chemistry</h3>
+                            <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded font-bold">Scoring</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-300">
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-emerald-500 rounded"> <span>Reimer-Tiemann & Kolbe Reactions</span></li>
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-emerald-500 rounded"> <span>Aldol Condensation & Cannizzaro</span></li>
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-emerald-500 rounded"> <span>Nernst Equation & Electrochemistry</span></li>
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-emerald-500 rounded"> <span>Coordination Compounds CFT</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Mathematics -->
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-amber-500/40 transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-base text-amber-400 flex items-center gap-2"><i class="fa-solid fa-square-root-variable"></i> Mathematics</h3>
+                            <span class="text-[10px] bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded font-bold">Daily Practice</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-300">
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-amber-500 rounded"> <span>Calculus: Integrals & Integration</span></li>
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-amber-500 rounded"> <span>Vectors & 3D Geometry (Shortest Distance)</span></li>
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-amber-500 rounded"> <span>Matrices & Determinants</span></li>
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-amber-500 rounded"> <span>Differential Equations</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Computer Science -->
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-purple-500/40 transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-base text-purple-400 flex items-center gap-2"><i class="fa-solid fa-laptop-code"></i> Computer Science</h3>
+                            <span class="text-[10px] bg-purple-500/10 text-purple-400 px-2 py-0.5 rounded font-bold">100/100 Target</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-300">
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-purple-500 rounded"> <span>Python Binary & Text File Handling</span></li>
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-purple-500 rounded"> <span>SQL Queries (GROUP BY, HAVING, JOINs)</span></li>
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-purple-500 rounded"> <span>Computer Networks & Protocols</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- English Core -->
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-rose-500/40 transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-base text-rose-400 flex items-center gap-2"><i class="fa-solid fa-book-open"></i> English Core</h3>
+                            <span class="text-[10px] bg-rose-500/10 text-rose-400 px-2 py-0.5 rounded font-bold">Booster</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-300">
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-rose-500 rounded"> <span>Notice, Report & Letter Formats</span></li>
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-rose-500 rounded"> <span>Flamingo & Vistas Important Q/A</span></li>
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-rose-500 rounded"> <span>Reading Comprehension Unseen Passages</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Hindi Core -->
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-teal-500/40 transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-base text-teal-400 flex items-center gap-2"><i class="fa-solid fa-feather"></i> Hindi (हिंदी कोर)</h3>
+                            <span class="text-[10px] bg-teal-500/10 text-teal-400 px-2 py-0.5 rounded font-bold">High Score</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-300">
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-teal-500 rounded"> <span>आरोह एवं वितान काव्य/गद्य खंड प्रश्नोत्तर</span></li>
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-teal-500 rounded"> <span>अभिव्यक्ति और माध्यम (जनसंचार एवं लेखन)</span></li>
+                            <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="w-4 h-4 accent-teal-500 rounded"> <span>निबंध एवं पत्र लेखन सटीक प्रारूप</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB CONTENT 2: ALL SUBJECTS YouTube Lectures Integration -->
+        <section id="content-youtube" class="hidden space-y-6">
+            <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                
+                <!-- YouTube Sub-Navigation Filter -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-4 border-b border-slate-800">
+                    <div>
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2" data-key="yt-title">
+                            <i class="fa-brands fa-youtube text-red-500 text-xl"></i> बेस्ट YouTube वन-शॉट लेक्चर्स (सभी विषय)
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1" data-key="yt-sub">विषय चुनें और सीधे भारत के टॉप YouTube टीचर्स के लेक्चर्स से पढ़ें।</p>
+                    </div>
+                    
+                    <!-- Subject Sub-Filter Buttons -->
+                    <div class="flex gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 scrollbar-none">
+                        <button onclick="filterYT('all')" id="yt-btn-all" class="px-3 py-1 text-xs font-bold rounded-lg bg-red-500 text-white">All</button>
+                        <button onclick="filterYT('phy')" id="yt-btn-phy" class="px-3 py-1 text-xs font-bold rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700">Physics</button>
+                        <button onclick="filterYT('chem')" id="yt-btn-chem" class="px-3 py-1 text-xs font-bold rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700">Chem</button>
+                        <button onclick="filterYT('math')" id="yt-btn-math" class="px-3 py-1 text-xs font-bold rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700">Maths</button>
+                        <button onclick="filterYT('cs')" id="yt-btn-cs" class="px-3 py-1 text-xs font-bold rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700">CS</button>
+                        <button onclick="filterYT('eng')" id="yt-btn-eng" class="px-3 py-1 text-xs font-bold rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700">English</button>
+                        <button onclick="filterYT('hin')" id="yt-btn-hin" class="px-3 py-1 text-xs font-bold rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700">Hindi</button>
+                    </div>
+                </div>
+
+                <!-- Video Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="yt-cards-container">
+                    
+                    <!-- Physics Video -->
+                    <div class="yt-card phy bg-slate-900/90 p-4 rounded-xl border border-slate-800 hover:border-red-500/50 transition group">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] bg-sky-500/10 text-sky-400 px-2.5 py-1 rounded font-bold">Physics Wallah</span>
+                            <span class="text-[10px] bg-red-500/10 text-red-400 px-2 py-0.5 rounded font-bold">PHYSICS</span>
+                        </div>
+                        <h4 class="font-bold text-sm text-white mb-1">Class 12 Physics Full Optics & Derivations</h4>
+                        <p class="text-xs text-slate-400 mb-3">HBSE बोर्ड परीक्षा के लिए विशेष 1-शॉट मैराथन लेक्चर्स।</p>
+                        <a href="https://www.youtube.com/results?search_query=Physics+Wallah+Class+12+Physics+One+Shot" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-sky-400 hover:text-sky-300">
+                            YouTube पर देखें <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+
+                    <!-- Chemistry Video -->
+                    <div class="yt-card chem bg-slate-900/90 p-4 rounded-xl border border-slate-800 hover:border-red-500/50 transition group">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded font-bold">Bharat Panchal</span>
+                            <span class="text-[10px] bg-red-500/10 text-red-400 px-2 py-0.5 rounded font-bold">CHEMISTRY</span>
+                        </div>
+                        <h4 class="font-bold text-sm text-white mb-1">Organic Chemistry Named Reactions Masterclass</h4>
+                        <p class="text-xs text-slate-400 mb-3">ऑर्गेनिक केमिस्ट्री की संपूर्ण अभिक्रियाएँ एक ही वीडियो में।</p>
+                        <a href="https://www.youtube.com/results?search_query=Bharat+Panchal+Class+12+Chemistry+One+Shot" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-emerald-400 hover:text-emerald-300">
+                            YouTube पर देखें <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+
+                    <!-- Mathematics Video -->
+                    <div class="yt-card math bg-slate-900/90 p-4 rounded-xl border border-slate-800 hover:border-red-500/50 transition group">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded font-bold">Neha Agrawal Mathematically Inclined</span>
+                            <span class="text-[10px] bg-red-500/10 text-red-400 px-2 py-0.5 rounded font-bold">MATHS</span>
+                        </div>
+                        <h4 class="font-bold text-sm text-white mb-1">Calculus Integration & 3D Geometry Short Tricky Qs</h4>
+                        <p class="text-xs text-slate-400 mb-3">कैलकुलस और 3D Geometry के हाई-वेटेज प्रॉब्लम्स।</p>
+                        <a href="https://www.youtube.com/results?search_query=Neha+Agrawal+Class+12+Maths+Calculus" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-amber-400 hover:text-amber-300">
+                            YouTube पर देखें <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+
+                    <!-- Computer Science Video -->
+                    <div class="yt-card cs bg-slate-900/90 p-4 rounded-xl border border-slate-800 hover:border-red-500/50 transition group">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] bg-purple-500/10 text-purple-400 px-2.5 py-1 rounded font-bold">CodeitUp / Swati Chawla</span>
+                            <span class="text-[10px] bg-red-500/10 text-red-400 px-2 py-0.5 rounded font-bold">CS</span>
+                        </div>
+                        <h4 class="font-bold text-sm text-white mb-1">Python File Handling & SQL Complete Revision</h4>
+                        <p class="text-xs text-slate-400 mb-3">बायनरी, टेक्स्ट फाइल्स और SQL Queries में 100% मार्क्स।</p>
+                        <a href="https://www.youtube.com/results?search_query=Class+12+Computer+Science+Python+SQL+One+Shot" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-purple-400 hover:text-purple-300">
+                            YouTube पर देखें <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+
+                    <!-- English Video -->
+                    <div class="yt-card eng bg-slate-900/90 p-4 rounded-xl border border-slate-800 hover:border-red-500/50 transition group">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] bg-rose-500/10 text-rose-400 px-2.5 py-1 rounded font-bold">Dear Sir / Shipra Mishra</span>
+                            <span class="text-[10px] bg-red-500/10 text-red-400 px-2 py-0.5 rounded font-bold">ENGLISH</span>
+                        </div>
+                        <h4 class="font-bold text-sm text-white mb-1">English Writing Skills & Flamingo/Vistas Summary</h4>
+                        <p class="text-xs text-slate-400 mb-3">नोटिस, रिपोर्ट, लेटर राइटिंग और लिटरेचर का क्विक रिवीजन।</p>
+                        <a href="https://www.youtube.com/results?search_query=Class+12+English+Writing+Skills+One+Shot" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-rose-400 hover:text-rose-300">
+                            YouTube पर देखें <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+
+                    <!-- Hindi Video -->
+                    <div class="yt-card hin bg-slate-900/90 p-4 rounded-xl border border-slate-800 hover:border-red-500/50 transition group">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] bg-teal-500/10 text-teal-400 px-2.5 py-1 rounded font-bold">Magnet Brains / Hindi Medium</span>
+                            <span class="text-[10px] bg-red-500/10 text-red-400 px-2 py-0.5 rounded font-bold">HINDI</span>
+                        </div>
+                        <h4 class="font-bold text-sm text-white mb-1">हिंदी (आरोह, वितान एवं अभिव्यक्ति माध्यम) संपूर्ण व्याख्या</h4>
+                        <p class="text-xs text-slate-400 mb-3">हिंदी बोर्ड पेपर में सर्वोच्च अंक प्राप्त करने की पूरी रणनीति।</p>
+                        <a href="https://www.youtube.com/results?search_query=Class+12+Hindi+Aroh+Vitan+One+Shot" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-teal-400 hover:text-teal-300">
+                            YouTube पर देखें <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB CONTENT 3: Scheduler Routine -->
+        <section id="content-scheduler" class="hidden space-y-6">
+            <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-800">
+                    <div>
+                        <h3 class="text-lg font-bold text-white" data-key="sch-title">स्मार्ट बोर्ड स्टडी रूटीन (Smart Study Plan)</h3>
+                        <p class="text-xs text-slate-400 mt-1" data-key="sch-sub">कम समय में मेरिट हासिल करने का मास्टर टाइम-टेबल।</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs font-bold text-sky-400">06:00 AM - 07:30 AM</span>
+                        <h4 class="font-bold text-sm text-white mt-1">Physics Derivations</h4>
+                        <p class="text-xs text-slate-400 mt-1">प्रातः काल में फिजिक्स के मुख्य डेरिवेशंस लिखकर दोहराएं।</p>
+                    </div>
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs font-bold text-emerald-400">05:00 PM - 06:30 PM</span>
+                        <h4 class="font-bold text-sm text-white mt-1">Maths Calculus</h4>
+                        <p class="text-xs text-slate-400 mt-1">रोजाना 20 सवाल खुद पेन से हल करें।</p>
+                    </div>
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs font-bold text-amber-400">07:30 PM - 09:00 PM</span>
+                        <h4 class="font-bold text-sm text-white mt-1">Chemistry Reactions</h4>
+                        <p class="text-xs text-slate-400 mt-1">ऑर्गेनिक रिएक्शंस और न्यूमेरिकल्स सॉल्व करें।</p>
+                    </div>
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs font-bold text-purple-400">09:30 PM - 10:30 PM</span>
+                        <h4 class="font-bold text-sm text-white mt-1">CS / English / Hindi</h4>
+                        <p class="text-xs text-slate-400 mt-1">अल्टरनेट डेज पर पाइथन, इंग्लिश राइटिंग व हिंदी व्याकरण पढ़ें।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB CONTENT 4: Direct HBSE Board Papers Links -->
+        <section id="content-papers" class="hidden space-y-6">
+            <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                <div class="mb-6 pb-4 border-b border-slate-800">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2" data-key="papers-title">
+                        <i class="fa-solid fa-file-pdf text-amber-400"></i> आधिकारिक HBSE बोर्ड पेपर्स (डायरेक्ट डाउनलोड लिंक्स)
+                    </h3>
+                    <p class="text-xs text-slate-400 mt-1" data-key="papers-sub">मुख्य वेबसाइट पर बिना भटके सीधे आधिकारिक HBSE क्वेश्चन पेपर्स और मॉडल पेपर्स डाउनलोड करें।</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Direct Link 1 -->
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-amber-500/10 text-amber-400 p-3 rounded-lg"><i class="fa-solid fa-cloud-arrow-down text-xl"></i></div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">HBSE Class 12 Official Model Papers 2026-27</h4>
+                                <span class="text-[11px] text-slate-400">Direct Official Portal Page</span>
+                            </div>
+                        </div>
+                        <a href="https://bseh.org.in/model-paper-stepwise-marking-scheme-classwise-202627" target="_blank" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-3.5 py-1.5 rounded-lg text-xs font-bold transition">
+                            डायरेक्ट खोलें
+                        </a>
+                    </div>
+
+                    <!-- Direct Link 2 -->
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-sky-500/10 text-sky-400 p-3 rounded-lg"><i class="fa-solid fa-box-archive text-xl"></i></div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">HBSE Class 12 March 2026 Question Papers (All Sets A,B,C,D)</h4>
+                                <span class="text-[11px] text-slate-400">Direct Question Bank Link</span>
+                            </div>
+                        </div>
+                        <a href="https://bseh.org.in/srsec-old-question-paper-march-2026" target="_blank" class="bg-sky-500 hover:bg-sky-400 text-slate-950 px-3.5 py-1.5 rounded-lg text-xs font-bold transition">
+                            डायरेक्ट खोलें
+                        </a>
+                    </div>
+
+                    <!-- Direct Link 3 -->
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-emerald-500/10 text-emerald-400 p-3 rounded-lg"><i class="fa-solid fa-file-lines text-xl"></i></div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">HBSE Class 12 Practice Papers Series</h4>
+                                <span class="text-[11px] text-slate-400">Direct Subject-wise Practice Sets</span>
+                            </div>
+                        </div>
+                        <a href="https://bseh.org.in/12th-practice-paper-more-subject" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-3.5 py-1.5 rounded-lg text-xs font-bold transition">
+                            डायरेक्ट खोलें
+                        </a>
+                    </div>
+
+                    <!-- Direct Link 4 -->
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-purple-500/10 text-purple-400 p-3 rounded-lg"><i class="fa-solid fa-clock-rotate-left text-xl"></i></div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">HBSE Previous Year Archive (2025 Papers)</h4>
+                                <span class="text-[11px] text-slate-400">Direct Past Papers Portal</span>
+                            </div>
+                        </div>
+                        <a href="https://bseh.org.in/srsec-old-question-paper-march-2025" target="_blank" class="bg-purple-500 hover:bg-purple-400 text-slate-950 px-3.5 py-1.5 rounded-lg text-xs font-bold transition">
+                            डायरेक्ट खोलें
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-cyber-dark py-6 text-center text-xs text-slate-500 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p>© 2026-2027 HBSE Class 12th Merit Hub. All rights reserved.</p>
+            <p class="text-slate-400 font-mono">Designed for Distinction // Boss Architect Edition</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
