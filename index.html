@@ -1,133 +1,303 @@
 <!DOCTYPE html>
-<html lang="hi" class="dark">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HBSE 12th Merit Engine PRO | Sunny Boss Edition</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        cyber: {
-                            dark: '#07090e',
-                            card: '#0f172a',
-                            accent: '#38bdf8',
-                            purple: '#8b5cf6',
-                            emerald: '#10b981',
-                            amber: '#f59e0b',
-                            rose: '#f43f5e'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- FontAwesome Icons & Google Fonts -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <link href="https://googleapis.com" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>AFRIDI – Creative Developer</title>
+    <meta name="description" content="AFRIDI - Creative Developer crafting immersive digital experiences">
+
+    <!-- Fonts - EXACT Lenis fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Anton for main headings (like LENIS) -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <!-- Roboto for body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Panchang alternative - using Space Grotesk (similar geometric sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-cyber-dark text-slate-100 font-['Plus_Jakarta_Sans'] antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-slate-950">
 
-    <!-- Header Navigation -->
-    <header class="sticky top-0 z-50 glass-nav border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-            
-            <!-- Logo Section with Artistic Micro Signature -->
-            <div class="flex items-center gap-3">
-                <div class="relative group cursor-pointer">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-sky-500 via-purple-600 to-emerald-500 rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-                    <div class="relative bg-cyber-dark border border-slate-700 p-2.5 rounded-xl flex items-center justify-center text-sky-400 font-black text-xl shadow-inner">
-                        <i class="fa-solid fa-atom text-xl animate-spin-slow"></i>
-                    </div>
-                </div>
-                <div>
-                    <h1 class="font-extrabold text-base sm:text-lg tracking-tight text-white flex items-center gap-2">
-                        HBSE 12th Merit Hub <span class="text-[10px] bg-sky-500/10 text-sky-400 px-2 py-0.5 rounded-full border border-sky-500/20 font-bold">2026-27</span>
-                    </h1>
-                    <!-- Micro Signature: Architect Sunny Boss -->
-                    <p class="text-[10px] text-slate-500 font-mono tracking-widest hover:text-sky-400 transition cursor-default" title="System Architect: Sunny Boss">SYS_ARCH // S.B. 12.05</p>
-                </div>
-            </div>
+<body>
+    <!-- Glow Frame - Lenis Style -->
+    <div class="glow-frame"></div>
 
-            <!-- Header Controls (Language Switcher & Status) -->
-            <div class="flex items-center gap-3">
-                <!-- Language Switcher Button -->
-                <button onclick="toggleLanguage()" id="lang-toggle-btn" class="bg-slate-800 hover:bg-slate-700 text-sky-400 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-2">
-                    <i class="fa-solid fa-language text-sm"></i> <span id="lang-label">English</span>
-                </button>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
 
-                <span class="hidden sm:inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 text-xs px-3 py-1.5 rounded-full border border-emerald-500/20 font-semibold">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Live Node
-                </span>
+    <!-- Fixed Bottom Navigation - Lenis Style -->
+    <nav class="bottom-nav">
+        <div class="nav-left">
+            <div class="nav-scroll-wrapper">
+                <span class="nav-scroll-text">SCROLL</span>
+                <span class="nav-scroll-text">TO EXPLORE</span>
             </div>
         </div>
-    </header>
 
-    <!-- Main Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-grow w-full space-y-6">
+        <div class="nav-center">
+            <span>A SMOOTH SCROLL LIBRARY</span>
+            <span>FRESH OUT OF DARKROOM.ENGINEERING</span>
+        </div>
 
-        <!-- Banner Countdown -->
-        <section class="glass-card rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-slate-900/90 via-slate-900/40 to-sky-950/30 border border-slate-800 shadow-2xl relative overflow-hidden">
-            <div class="flex flex-col lg:flex-row justify-between items-center gap-6 relative z-10">
-                <div class="text-center lg:text-left">
-                    <span class="text-xs font-extrabold uppercase tracking-widest text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20" data-key="mission">Mission 90%+ HBSE Board</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-3 tracking-tight" data-key="banner-title">हरियाणा बोर्ड 12वीं परीक्षा काउंटडाउन</h2>
-                    <p class="text-slate-400 text-sm mt-1 max-w-xl" data-key="banner-subtitle">भौतिकी, रसायन, गणित, कंप्यूटर, हिंदी एवं अंग्रेजी की संपूर्ण तैयारी एक स्थान पर।</p>
-                </div>
-                <!-- Countdown Grid -->
-                <div class="grid grid-cols-4 gap-2.5 sm:gap-4 text-center w-full lg:w-auto">
-                    <div class="glass-box p-3 sm:p-4 rounded-xl border border-slate-800 min-w-[70px] sm:min-w-[85px]">
-                        <span id="timer-days" class="block text-2xl sm:text-3xl font-black text-sky-400">111</span>
-                        <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold" data-key="unit-days">दिन</span>
+        <div class="nav-right">
+            <a href="https://github.com" class="nav-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+                <span>DOCUMENTATION</span>
+            </a>
+            <a href="#showcase" class="nav-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                </svg>
+                <span>VIEW SHOWCASE</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section - Exact Lenis Style -->
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <!-- Large Title like LENIS SVG -->
+                <h1 class="hero-title">AFRIDI</h1>
+
+                <div class="hero-subtitle-row">
+                    <div class="hero-subtitle-left">
+                        <!-- Empty for spacing -->
                     </div>
-                    <div class="glass-box p-3 sm:p-4 rounded-xl border border-slate-800 min-w-[70px] sm:min-w-[85px]">
-                        <span id="timer-hours" class="block text-2xl sm:text-3xl font-black text-white">00</span>
-                        <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold" data-key="unit-hours">घंटे</span>
-                    </div>
-                    <div class="glass-box p-3 sm:p-4 rounded-xl border border-slate-800 min-w-[70px] sm:min-w-[85px]">
-                        <span id="timer-mins" class="block text-2xl sm:text-3xl font-black text-white">00</span>
-                        <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold" data-key="unit-mins">मिनट</span>
-                    </div>
-                    <div class="glass-box p-3 sm:p-4 rounded-xl border border-slate-800 min-w-[70px] sm:min-w-[85px]">
-                        <span id="timer-secs" class="block text-2xl sm:text-3xl font-black text-amber-400">00</span>
-                        <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold" data-key="unit-secs">सेकंड</span>
+                    <div class="hero-subtitle-right">
+                        <span class="hero-tagline">WEB-DEVELOPER</span>
+                        <span class="hero-copyright">ALHAMDULILLAH</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Main Section Navigation Tabs -->
-        <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-slate-800">
-            <button onclick="switchTab('high-yield')" id="tab-high-yield" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-sky-500 text-slate-950 flex items-center gap-2 whitespace-nowrap shadow-lg shadow-sky-500/20 transition-all">
-                <i class="fa-solid fa-bullseye"></i> <span data-key="tab-notes">Zero-to-Hero High-Yield Topics</span>
-            </button>
-            <button onclick="switchTab('youtube')" id="tab-youtube" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap border border-slate-800 transition-all">
-                <i class="fa-solid fa-video text-red-500"></i> <span data-key="tab-youtube">YouTube One-Shot Lectures</span>
-            </button>
-            <button onclick="switchTab('scheduler')" id="tab-scheduler" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap border border-slate-800 transition-all">
-                <i class="fa-solid fa-calendar-check text-emerald-400"></i> <span data-key="tab-schedule">Smart Scheduler</span>
-            </button>
-            <button onclick="switchTab('papers')" id="tab-papers" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap border border-slate-800 transition-all">
-                <i class="fa-solid fa-file-pdf text-amber-400"></i> <span data-key="tab-papers">Direct HBSE Board Papers</span>
-            </button>
-        </div>
-
-        <!-- TAB 1: High-Yield Topics -->
-        <div id="content-high-yield" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            <!-- Physics -->
-            <div class="glass-card rounded-2xl p-5 border border-slate-800/90 hover:border-sky-500/40 transition">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="font-bold text-lg text-white flex items-center gap-2"><i class="fa-solid fa-bolt text-sky-400"></i> Physics</h3>
-                    <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">Priority 1</span>
+        <!-- WHY Section - Lenis Half-and-Half Layout -->
+        <section class="section section-split" id="about">
+            <div class="section-left">
+                <div class="vertical-line"></div>
+                <div class="section-title-vertical">
+                    <span class="title-word">WHY</span>
+                    <span class="title-word">CREATIVE</span>
+                    <span class="title-word">CODE<span class="accent">?</span></span>
                 </div>
-                <ul class="space-y-2.5 text-sm text-slate-300">
-                    <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="accent-sky-500 w-4 h-4 rounded"> Lens Maker Formula & Optics Derivations</li>
-                    <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="accent-sky-500 w-4 h-4 rounded"> Gauss Theorem Applications</li>
-                    <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="accent-sky-500 w-4 h-4 rounded"> AC Generator & Transformers</li>
-                    <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="accent-sky-500 w-4 h-4 rounded"> pn Junction Diode & Semiconductors</li>
-                </ul>
+            </div>
+            <div class="section-right">
+                <p class="section-heading-sub">CRAFTING MEMORABLE EXPERIENCES</p>
+                <p class="body-text">
+                    We've heard all the reasons why smooth scrolling is bad for accessibility,
+                    and we agree — native scroll is great. But sometimes, you need that extra
+                    touch of magic for your creative projects.
+                </p>
+                <p class="body-text">
+                    I believe in pushing the boundaries of what's possible on the web,
+                    crafting interfaces that don't just work—they inspire and captivate.
+                </p>
+            </div>
+        </section>
+
+        <!-- Big Text Section - Lenis Style -->
+        <section class="section section-fulltext">
+            <h2 class="big-text">
+                <span class="big-text-line">CREATE MORE</span>
+                <span class="big-text-line accent-text">IMMERSIVE</span>
+                <span class="big-text-line">INTERFACES</span>
+            </h2>
+        </section>
+
+        <!-- Features Section - Lenis Half-and-Half -->
+        <section class="section section-split" id="skills">
+            <div class="section-left">
+                <div class="vertical-line"></div>
+                <div class="section-title-vertical">
+                    <span class="title-word">RETHINKING</span>
+                    <span class="title-word">THE WEB</span>
+                    <span class="title-word">EXPERIENCE</span>
+                </div>
+            </div>
+            <div class="section-right">
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <span class="feature-number">01</span>
+                        <div class="feature-content">
+                            <h3 class="feature-title">FRONTEND DEVELOPMENT</h3>
+                            <p class="feature-desc">React, Next.js, Vue, TypeScript — building robust, scalable
+                                applications with modern frameworks.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-number">02</span>
+                        <div class="feature-content">
+                            <h3 class="feature-title">CREATIVE CODING</h3>
+                            <p class="feature-desc">WebGL, Three.js, GSAP, Shaders — pushing pixels and creating visual
+                                experiences that captivate.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-number">03</span>
+                        <div class="feature-content">
+                            <h3 class="feature-title">UI/UX DESIGN</h3>
+                            <p class="feature-desc">Figma, Prototyping, Design Systems — designing interfaces that are
+                                as beautiful as they are functional.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-number">04</span>
+                        <div class="feature-content">
+                            <h3 class="feature-title">MOTION DESIGN</h3>
+                            <p class="feature-desc">Micro-interactions, Scroll animations, Page transitions — bringing
+                                static designs to life.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-number">05</span>
+                        <div class="feature-content">
+                            <h3 class="feature-title">PERFORMANCE OPTIMIZATION</h3>
+                            <p class="feature-desc">Core Web Vitals, Lazy loading, Code splitting — ensuring fast,
+                                responsive experiences across all devices.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-number">06</span>
+                        <div class="feature-content">
+                            <h3 class="feature-title">API DEVELOPMENT</h3>
+                            <p class="feature-desc">REST, GraphQL, Node.js, Database design — building powerful
+                                backends that scale seamlessly.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-number">07</span>
+                        <div class="feature-content">
+                            <h3 class="feature-title">ACCESSIBILITY</h3>
+                            <p class="feature-desc">WCAG standards, Semantic HTML, ARIA — creating inclusive experiences
+                                that work for everyone.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-number">08</span>
+                        <div class="feature-content">
+                            <h3 class="feature-title">DEVOPS & CI/CD</h3>
+                            <p class="feature-desc">Docker, GitHub Actions, Vercel, AWS — automating deployments
+                                and streamlining development workflows.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-number">09</span>
+                        <div class="feature-content">
+                            <h3 class="feature-title">TESTING & QA</h3>
+                            <p class="feature-desc">Jest, Cypress, Playwright, Unit testing — ensuring code reliability
+                                with comprehensive test coverage.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-number">10</span>
+                        <div class="feature-content">
+                            <h3 class="feature-title">MOBILE DEVELOPMENT</h3>
+                            <p class="feature-desc">React Native, Flutter, PWAs — building cross-platform mobile
+                                experiences that feel native.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-number">11</span>
+                        <div class="feature-content">
+                            <h3 class="feature-title">AI INTEGRATION</h3>
+                            <p class="feature-desc">OpenAI, LLMs, Machine Learning — integrating intelligent features
+                                that enhance user experiences.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-number">12</span>
+                        <div class="feature-content">
+                            <h3 class="feature-title">CLOUD ARCHITECTURE</h3>
+                            <p class="feature-desc">AWS, GCP, Serverless, Microservices — designing scalable
+                                infrastructure
+                                for modern applications.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Showcase Section -->
+        <section class="section section-showcase" id="projects">
+            <div class="showcase-header">
+                <h2 class="showcase-title">SELECTED WORKS</h2>
+                <span class="showcase-count">04 PROJECTS</span>
+            </div>
+
+            <div class="showcase-list">
+                <a href="#" class="showcase-item">
+                    <span class="showcase-number">01</span>
+                    <div class="showcase-info">
+                        <h3 class="showcase-name">IMMERSIVE PORTFOLIO</h3>
+                        <span class="showcase-category">Web Development</span>
+                    </div>
+                    <span class="showcase-arrow">↗</span>
+                </a>
+                <a href="#" class="showcase-item">
+                    <span class="showcase-number">02</span>
+                    <div class="showcase-info">
+                        <h3 class="showcase-name">E-COMMERCE PLATFORM</h3>
+                        <span class="showcase-category">Full Stack</span>
+                    </div>
+                    <span class="showcase-arrow">↗</span>
+                </a>
+                <a href="#" class="showcase-item">
+                    <span class="showcase-number">03</span>
+                    <div class="showcase-info">
+                        <h3 class="showcase-name">3D INTERACTIVE</h3>
+                        <span class="showcase-category">Creative Dev</span>
+                    </div>
+                    <span class="showcase-arrow">↗</span>
+                </a>
+                <a href="#" class="showcase-item">
+                    <span class="showcase-number">04</span>
+                    <div class="showcase-info">
+                        <h3 class="showcase-name">MOBILE APP</h3>
+                        <span class="showcase-category">React Native</span>
+                    </div>
+                    <span class="showcase-arrow">↗</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section section-cta" id="contact">
+            <h2 class="cta-title">
+                <span class="cta-line">OPEN TO</span>
+                <span class="cta-line accent-text">OPPORTUNITIES</span>
+                <span class="cta-line">&amp; COLLABORATIONS</span>
+            </h2>
+            <a href="mailto:afridi@example.com" class="cta-btn">
+                <span>LET'S BUILD TOGETHER</span>
+                <span class="cta-arrow">↗</span>
+            </a>
+        </section>
+
+        <!-- Footer - Lenis Style -->
+        <footer class="footer">
+            <div class="footer-left">
+                <a href="https://twitter.com" class="footer-link">X</a>
+                <a href="https://github.com" class="footer-link">GITHUB</a>
+                <a href="mailto:afridi@example.com" class="footer-link">MAIL</a>
+            </div>
+            <div class="footer-right">
+                <span>© 2026 AFRIDI.DEV</span>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
