@@ -1,237 +1,225 @@
 /**
- * HBSE 12th Merit Engine PRO - Complete Logic
- * Includes:
- * 1. Live Countdown Timer (Target: Feb 27, 2027) + Automatic Exam-Day Look Switcher
- * 2. Rotating Real Hindi & English Study Motivation Quotes
- * 3. Sequential Auto-Play Padhai Motivation Videos (Vikas Divyakirti, Alakh Pandey, etc.)
- * 4. Biology Live Video Switcher & Subject Sub-Filtering
- * 5. 2024 - 2027 Sample Papers Year Filter, Language Toggle & Progress Persistence
+ * HBSE Class 12th Unified Academic Hub
+ * - Subject-wise Date Sheet Countdown Engine (2027)
+ * - Auto-unlocks HBSE Official Logo & Dr. Vikas Divyakirti + Alakh Pandey Motivation Playlist
+ * - 14 Complete Subjects with Direct Sample Paper PDFs & In-Website YouTube Embeds
  */
 
-// 1. Live Countdown Timer Logic (Target: Feb 27, 2027)
-const targetDate = new Date("February 27, 2027 09:00:00").getTime();
+// 1. HBSE Class 12th Tentative Date Sheet Schedule (Evening Shift: 12:30 PM)
+const DEFAULT_HBSE_DATESHEET = [
+    { id: "english",    subject: "English Core",             date: "2027-02-27T12:30:00", stream: "All Streams" },
+    { id: "physics",    subject: "Physics / Economics",      date: "2027-03-02T12:30:00", stream: "Science / Arts / Comm" },
+    { id: "history",    subject: "History / Accountancy",    date: "2027-03-05T12:30:00", stream: "Arts / Commerce" },
+    { id: "chemistry",  subject: "Chemistry / Business St.", date: "2027-03-09T12:30:00", stream: "Science / Commerce" },
+    { id: "hindi",      subject: "Hindi Core",               date: "2027-03-12T12:30:00", stream: "All Streams" },
+    { id: "maths",      subject: "Mathematics / Pol. Sci.",  date: "2027-03-16T12:30:00", stream: "Non-Med / Arts" },
+    { id: "biology",    subject: "Biology / Geography",      date: "2027-03-20T12:30:00", stream: "Medical / Arts" },
+    { id: "cs",         subject: "Computer Science (CS)",    date: "2027-03-24T12:30:00", stream: "Skill / Optional" },
+    { id: "music",      subject: "Hindustani Music",         date: "2027-03-27T12:30:00", stream: "Arts / Music" }
+];
 
-// Real Hindi & English Padhai Motivation Quotes
-const studyMotivationQuotes = [
+let hbseSchedule = JSON.parse(localStorage.getItem("hbse_2027_datesheet")) || DEFAULT_HBSE_DATESHEET;
+let selectedExamId = null;
+
+function formatExamDate(isoStr) {
+    const d = new Date(isoStr);
+    return d.toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" });
+}
+
+function getAutoNextExam() {
+    const now = new Date().getTime();
+    const sorted = [...hbseSchedule].sort((a, b) => new Date(a.date) - new Date(b.date));
+    return sorted.find(item => new Date(item.date).getTime() > now) || sorted[0];
+}
+
+function initDateSheetUI() {
+    const selectEl = document.getElementById("countdown-subject-select");
+    const stripEl = document.getElementById("datesheet-timeline-strip");
+    const editorGrid = document.getElementById("date-inputs-grid");
+
+    if (!selectedExamId) {
+        selectedExamId = getAutoNextExam().id;
+    }
+
+    if (selectEl) {
+        selectEl.innerHTML = hbseSchedule.map(item => `
+            <option value="${item.id}" ${item.id === selectedExamId ? "selected" : ""}>
+                ${item.subject} (${formatExamDate(item.date)})
+            </option>
+        `).join("");
+    }
+
+    if (stripEl) {
+        const now = new Date().getTime();
+        stripEl.innerHTML = hbseSchedule.map(item => {
+            const examTime = new Date(item.date).getTime();
+            const daysLeft = Math.ceil((examTime - now) / (1000 * 60 * 60 * 24));
+            const isSelected = item.id === selectedExamId;
+            const statusText = daysLeft > 0 ? `${daysLeft} Days Left` : "Exam Started";
+
+            return `
+                <div onclick="changeTargetExam('${item.id}')" class="cursor-pointer p-2.5 rounded-xl border transition ${isSelected ? 'bg-sky-500/15 border-sky-400' : 'bg-slate-900/80 border-slate-800 hover:border-slate-600'}">
+                    <div class="text-[10px] font-bold text-amber-400">${formatExamDate(item.date)}</div>
+                    <div class="text-xs font-extrabold text-white truncate mt-0.5">${item.subject}</div>
+                    <div class="text-[10px] text-slate-400 mt-0.5">${statusText}</div>
+                </div>
+            `;
+        }).join("");
+    }
+
+    if (editorGrid) {
+        editorGrid.innerHTML = hbseSchedule.map(item => `
+            <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800">
+                <label class="block font-bold text-slate-300 mb-1">${item.subject}</label>
+                <input type="datetime-local" id="edit-date-${item.id}" value="${item.date.slice(0, 16)}" class="w-full bg-slate-950 text-white px-2 py-1 rounded border border-slate-700 text-xs">
+            </div>
+        `).join("");
+    }
+
+    const exam = hbseSchedule.find(e => e.id === selectedExamId) || getAutoNextExam();
+    const heading = document.getElementById("hero-heading");
+    const dateBadge = document.getElementById("next-exam-date-badge");
+    if (heading) heading.innerText = `अगला पेपर: ${exam.subject}`;
+    if (dateBadge) dateBadge.innerText = `Date: ${formatExamDate(exam.date)} • 12:30 PM (${exam.stream})`;
+}
+
+function changeTargetExam(examId) {
+    selectedExamId = examId;
+    initDateSheetUI();
+}
+
+function toggleDateEditor() {
+    const modal = document.getElementById("datesheet-editor-modal");
+    if (modal) modal.classList.toggle("hidden");
+}
+
+function saveCustomDates() {
+    hbseSchedule = hbseSchedule.map(item => {
+        const inputEl = document.getElementById(`edit-date-${item.id}`);
+        return (inputEl && inputEl.value) ? { ...item, date: inputEl.value + ":00" } : item;
+    });
+    localStorage.setItem("hbse_2027_datesheet", JSON.stringify(hbseSchedule));
+    toggleDateEditor();
+    initDateSheetUI();
+}
+
+function resetDefaultDates() {
+    localStorage.removeItem("hbse_2027_datesheet");
+    hbseSchedule = [...DEFAULT_HBSE_DATESHEET];
+    selectedExamId = getAutoNextExam().id;
+    toggleDateEditor();
+    initDateSheetUI();
+}
+
+// 2. Rotating Quotes & Exam-Day Logo + Motivation Playlist
+const GENUINE_QUOTES = [
     "\"क्यों डरें ज़िंदगी में क्या होगा, कुछ ना होगा तो तजुर्बा होगा।\" — Dr. Vikas Divyakirti",
     "\"पढ़ाई को अपनी मजबूरी नहीं, अपनी ताकत बनाओ।\" — Alakh Pandey (PW)",
     "\"हमेशा याद रखो, आप अपनी प्रॉब्लम से कई गुना बड़े हो।\" — Sandeep Maheshwari",
     "\"देखिये, भगवान केवल उन्ही की मदद करता है जो कड़ी मेहनत करते हैं।\" — Dr. A.P.J. Abdul Kalam",
-    "\"जैसे नोट गिनते समय ध्यान नहीं भटकता, वैसे ही पढ़ाई करते समय भी ध्यान नहीं भटकना चाहिए।\" — Khan Sir",
     "\"It always seems impossible until it's done.\" — Nelson Mandela"
 ];
 
-// Sequential Padhai Motivation YouTube Video IDs
-const padhaiMotivationPlaylist = [
-    "icKhsQtVlLs", // 1. Dr. Vikas Divyakirti - Kuch na hoga toh tajurba hoga
-    "LwjSbN5-tEU", // 2. Alakh Pandey Sir (PW) - Study Motivation
-    "R8OFOURSZZA", // 3. Sandeep Maheshwari - Addiction to Education
-    "3pg0nzainMo"  // 4. Khan Sir - Best Study Motivation
-];
+const MOTIVATION_PLAYLIST_IDS = ["icKhsQtVlLs", "LwjSbN5-tEU", "R8OFOURSZZA", "3pg0nzainMo"];
+let qIdx = 0;
+let mVideoIdx = 0;
+let ytPlaylistPlayer = null;
+let apiLoaded = false;
 
-let quoteIndex = 0;
-let activeMentorIndex = 0;
-let motivationPlayer = null;
-let ytScriptInjected = false;
+setInterval(async () => {
+    const qEl = document.getElementById("rotating-quote-text");
+    if (!qEl) return;
 
-// Smoothly cycle Hindi & English quotes every 5 seconds
-async function rotateLiveQuotes() {
-    const quoteEl = document.getElementById("live-quote-display");
-    if (!quoteEl) return;
-
-    quoteEl.classList.remove("quote-fade-in");
-    quoteEl.classList.add("quote-fade-out");
+    qEl.classList.remove("quote-show");
+    qEl.classList.add("quote-hide");
 
     setTimeout(async () => {
-        if (quoteIndex % 2 === 0) {
-            quoteEl.innerText = studyMotivationQuotes[quoteIndex % studyMotivationQuotes.length];
+        if (qIdx % 2 === 0) {
+            qEl.innerText = GENUINE_QUOTES[qIdx % GENUINE_QUOTES.length];
         } else {
             try {
-                const response = await fetch("https://dummyjson.com");
-                if (!response.ok) throw new Error("API unavailable");
-                const data = await response.json();
-                quoteEl.innerText = `"${data.quote}" — ${data.author}`;
-            } catch (error) {
-                quoteEl.innerText = studyMotivationQuotes[quoteIndex % studyMotivationQuotes.length];
+                const res = await fetch("https://dummyjson.com");
+                const data = await res.json();
+                qEl.innerText = `"${data.quote}" — ${data.author}`;
+            } catch (e) {
+                qEl.innerText = GENUINE_QUOTES[qIdx % GENUINE_QUOTES.length];
             }
         }
-        quoteIndex++;
-        quoteEl.classList.remove("quote-fade-out");
-        quoteEl.classList.add("quote-fade-in");
-    }, 500);
-}
-setInterval(rotateLiveQuotes, 5000);
+        qIdx++;
+        qEl.classList.remove("quote-hide");
+        qEl.classList.add("quote-show");
+    }, 450);
+}, 5000);
 
-// Countdown Loop
-const countdownTimer = setInterval(updateCountdown, 1000);
+setInterval(() => {
+    const targetExam = hbseSchedule.find(e => e.id === selectedExamId) || getAutoNextExam();
+    const diff = new Date(targetExam.date).getTime() - new Date().getTime();
 
-function updateCountdown() {
-    const now = new Date().getTime();
-    const difference = targetDate - now;
-
-    if (difference <= 0) {
-        clearInterval(countdownTimer);
-        triggerExamDayMotivationMode();
+    if (diff <= 0) {
+        activateExamDayTheme(targetExam.subject);
         return;
     }
 
-    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    document.getElementById("t-days").innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, "0");
+    document.getElementById("t-hours").innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, "0");
+    document.getElementById("t-mins").innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
+    document.getElementById("t-secs").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, "0");
+}, 1000);
 
-    const dElem = document.getElementById("timer-days");
-    const hElem = document.getElementById("timer-hours");
-    const mElem = document.getElementById("timer-mins");
-    const sElem = document.getElementById("timer-secs");
+function activateExamDayTheme(subjectName) {
+    const spinner = document.getElementById("live-spinner-icon");
+    const hbseImg = document.getElementById("hbse-official-logo");
+    const logoBox = document.getElementById("brand-logo-box");
 
-    if (dElem) dElem.innerText = days < 10 ? "0" + days : days;
-    if (hElem) hElem.innerText = hours < 10 ? "0" + hours : hours;
-    if (mElem) mElem.innerText = minutes < 10 ? "0" + minutes : minutes;
-    if (sElem) sElem.innerText = seconds < 10 ? "0" + seconds : seconds;
-}
-updateCountdown();
-
-// Switch Banner Look & Unlock Auto-Play Motivation Playlist when timer ends
-function triggerExamDayMotivationMode() {
-    const banner = document.getElementById("hero-countdown-banner");
-    const badge = document.getElementById("banner-badge");
-    const title = document.getElementById("banner-main-title");
-    const timerBox = document.getElementById("countdown-grid-box");
-    const videoHub = document.getElementById("exam-day-motivation-hub");
-
-    if (banner) banner.classList.add("exam-day-glow");
-    if (badge) {
-        badge.innerText = "EXAM SHOWTIME // ALL THE BEST";
-        badge.className = "text-xs font-extrabold uppercase tracking-widest text-amber-300 bg-amber-500/20 px-3 py-1 rounded-full border border-amber-400/40";
+    if (spinner) spinner.classList.add("hidden");
+    if (hbseImg) hbseImg.classList.remove("hidden");
+    if (logoBox) {
+        logoBox.classList.remove("bg-slate-900", "border-sky-500/30");
+        logoBox.classList.add("bg-white", "border-amber-400");
     }
-    if (title) title.innerText = "अब वक्त है खुद को साबित करने का! All The Best Warriors!";
-    if (timerBox) timerBox.classList.add("hidden");
-    if (videoHub) videoHub.classList.remove("hidden");
 
-    injectYouTubeIframeApi();
-}
+    const hero = document.getElementById("countdown-hero-card");
+    const heading = document.getElementById("hero-heading");
+    const boxes = document.getElementById("countdown-boxes");
+    const motSection = document.getElementById("exam-day-motivation-section");
 
-function injectYouTubeIframeApi() {
-    if (ytScriptInjected) return;
-    ytScriptInjected = true;
+    if (hero) hero.classList.add("exam-day-active");
+    if (heading) heading.innerText = `Exam Day (${subjectName}): All The Best Warriors!`;
+    if (boxes) boxes.classList.add("hidden");
+    if (motSection) motSection.classList.remove("hidden");
 
-    const tag = document.createElement("script");
-    tag.src = "https://youtube.com";
-    document.head.appendChild(tag);
+    if (!apiLoaded) {
+        apiLoaded = true;
+        const tag = document.createElement("script");
+        tag.src = "https://youtube.com";
+        document.head.appendChild(tag);
+    }
 }
 
 window.onYouTubeIframeAPIReady = function () {
-    const container = document.getElementById("auto-motivation-player");
-    if (!container) return;
-
-    motivationPlayer = new YT.Player("auto-motivation-player", {
-        videoId: padhaiMotivationPlaylist[activeMentorIndex],
+    if (!document.getElementById("yt-motivation-playlist")) return;
+    ytPlaylistPlayer = new YT.Player("yt-motivation-playlist", {
+        videoId: MOTIVATION_PLAYLIST_IDS[mVideoIdx],
         playerVars: { autoplay: 1, rel: 0 },
         events: {
-            onStateChange: function (event) {
-                if (event.data === YT.PlayerState.ENDED) {
-                    activeMentorIndex = (activeMentorIndex + 1) % padhaiMotivationPlaylist.length;
-                    motivationPlayer.loadVideoById(padhaiMotivationPlaylist[activeMentorIndex]);
-                    updateMentorButtonStyles(activeMentorIndex);
+            onStateChange: function (e) {
+                if (e.data === YT.PlayerState.ENDED) {
+                    mVideoIdx = (mVideoIdx + 1) % MOTIVATION_PLAYLIST_IDS.length;
+                    ytPlaylistPlayer.loadVideoById(MOTIVATION_PLAYLIST_IDS[mVideoIdx]);
+                    highlightMentorTab(mVideoIdx);
                 }
             }
         }
     });
 };
 
-function playMentorAtIndex(index, clickedBtn) {
-    activeMentorIndex = index;
-    if (motivationPlayer && typeof motivationPlayer.loadVideoById === "function") {
-        motivationPlayer.loadVideoById(padhaiMotivationPlaylist[activeMentorIndex]);
+function switchMotivationVideo(idx, btn) {
+    mVideoIdx = idx;
+    if (ytPlaylistPlayer && typeof ytPlaylistPlayer.loadVideoById === "function") {
+        ytPlaylistPlayer.loadVideoById(MOTIVATION_PLAYLIST_IDS[mVideoIdx]);
     }
-    updateMentorButtonStyles(index, clickedBtn);
+    highlightMentorTab(idx, btn);
 }
 
-function updateMentorButtonStyles(index, clickedBtn) {
-    const buttons = document.querySelectorAll(".mentor-switch-btn");
-    buttons.forEach((btn, idx) => {
-        const isActive = clickedBtn ? btn === clickedBtn : idx === index;
-        if (isActive) {
-            btn.className = "mentor-switch-btn active-mentor px-4 py-2 rounded-xl text-xs font-bold border border-amber-400 bg-amber-400 text-slate-950 transition";
-        } else {
-            btn.className = "mentor-switch-btn px-4 py-2 rounded-xl text-xs font-bold border border-slate-700 bg-slate-900 text-slate-200 hover:border-amber-400 transition";
-        }
-    });
-}
-
-// 2. Main Tab Switching Logic
-function switchTab(tabName) {
-    const tabs = ["high-yield", "youtube", "scheduler", "papers"];
-
-    tabs.forEach((t) => {
-        const btn = document.getElementById(`tab-${t}`);
-        const content = document.getElementById(`content-${t}`);
-
-        if (btn && content) {
-            if (t === tabName) {
-                btn.className = "px-5 py-2.5 text-sm font-bold rounded-xl bg-sky-500 text-slate-950 flex items-center gap-2 whitespace-nowrap shadow-lg shadow-sky-500/20 transition-all";
-                content.classList.remove("hidden");
-            } else {
-                btn.className = "px-5 py-2.5 text-sm font-bold rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap border border-slate-800 transition-all";
-                content.classList.add("hidden");
-            }
-        }
-    });
-}
-
-// 3. Biology Live Video Switcher & YouTube Subject Sub-Filtering
-const BIOLOGY_TEACHER_VIDEOS = {
-    vipin: "qeOhnLUGCe4",   // Vipin Sharma Sir (PW)
-    samapti: "Ckc0gS9Kvrg", // Samapti Sinha Mam
-    ritu: "LhqhdKRHt7g"     // Ritu Rattewal Mam
-};
-
-function switchBioTeacher(teacherKey, clickedBtn) {
-    const player = document.getElementById("bio-main-player");
-    const videoId = BIOLOGY_TEACHER_VIDEOS[teacherKey];
-    if (!player || !videoId) return;
-
-    player.src = `https://youtube.com{videoId}?autoplay=1&rel=0`;
-
-    document.querySelectorAll(".bio-teacher-btn").forEach((btn) => {
-        btn.className = "bio-teacher-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-200 hover:bg-slate-700 transition";
-    });
-    if (clickedBtn) {
-        clickedBtn.className = "bio-teacher-btn active px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-500 text-slate-950 transition";
-    }
-}
-
-function filterYT(subject) {
-    const categories = ["all", "bio", "phy", "chem", "math", "cs", "eng", "hin"];
-
-    categories.forEach((cat) => {
-        const btn = document.getElementById(`yt-btn-${cat}`);
-        if (btn) {
-            if (cat === subject) {
-                btn.className = "px-3 py-1.5 text-xs font-bold rounded-lg bg-red-500 text-white transition";
-            } else {
-                btn.className = "px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition";
-            }
-        }
-    });
-
-    const cards = document.querySelectorAll(".yt-card");
-    cards.forEach((card) => {
-        if (subject === "all" || card.classList.contains(subject)) {
-            card.classList.remove("hidden");
-        } else {
-            card.classList.add("hidden");
-        }
-    });
-}
-
-// 4. 2024 - 2027 Sample Papers Year Filter
-function filterHbsePapers(year, clickedBtn) {
-    const cards = document.querySelectorAll(".hbse-paper-item");
-    const buttons = document.querySelectorAll(".paper-year-btn");
-
-    buttons.forEach((btn) => {
-        btn.className = "paper-year-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition";
-    });
-    if (clickedBtn) {
+function highlightMentorTab(idx, clickedBtn) {
+    document.querySelectorAll(".mentor-btn").forEach((b, i) => {
