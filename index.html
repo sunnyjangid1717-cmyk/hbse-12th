@@ -29,50 +29,15 @@
     <!-- FontAwesome Icons & Google Fonts -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <link href="https://googleapis.com" rel="stylesheet">
-    
-    <style>
-        body {
-            background-color: #07090e;
-            color: #f8fafc;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-        }
-        .glass-nav {
-            background: rgba(7, 9, 14, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
-        .glass-card {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(7, 9, 14, 0.8) 100%);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-        }
-        .glass-box {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(8px);
-        }
-        @keyframes spinSlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .animate-spin-slow {
-            animation: spinSlow 12s linear infinite;
-        }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #07090e; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
-        .scrollbar-none::-webkit-scrollbar { display: none; }
-        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-cyber-dark text-slate-100 font-['Plus_Jakarta_Sans'] antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-slate-950">
 
     <!-- Header Navigation -->
     <header class="sticky top-0 z-50 glass-nav border-b border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-            <!-- Logo Section -->
+            
+            <!-- Logo Section with Artistic Micro Signature -->
             <div class="flex items-center gap-3">
                 <div class="relative group cursor-pointer">
                     <div class="absolute -inset-1 bg-gradient-to-r from-sky-500 via-purple-600 to-emerald-500 rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
@@ -84,15 +49,18 @@
                     <h1 class="font-extrabold text-base sm:text-lg tracking-tight text-white flex items-center gap-2">
                         HBSE 12th Merit Hub <span class="text-[10px] bg-sky-500/10 text-sky-400 px-2 py-0.5 rounded-full border border-sky-500/20 font-bold">2026-27</span>
                     </h1>
+                    <!-- Micro Signature: Architect Sunny Boss -->
                     <p class="text-[10px] text-slate-500 font-mono tracking-widest hover:text-sky-400 transition cursor-default" title="System Architect: Sunny Boss">SYS_ARCH // S.B. 12.05</p>
                 </div>
             </div>
 
-            <!-- Header Controls -->
+            <!-- Header Controls (Language Switcher & Status) -->
             <div class="flex items-center gap-3">
-                <button type="button" onclick="toggleLanguage()" id="lang-toggle-btn" class="bg-slate-800 hover:bg-slate-700 text-sky-400 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-2">
+                <!-- Language Switcher Button -->
+                <button onclick="toggleLanguage()" id="lang-toggle-btn" class="bg-slate-800 hover:bg-slate-700 text-sky-400 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-2">
                     <i class="fa-solid fa-language text-sm"></i> <span id="lang-label">English</span>
                 </button>
+
                 <span class="hidden sm:inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 text-xs px-3 py-1.5 rounded-full border border-emerald-500/20 font-semibold">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Live Node
                 </span>
@@ -109,12 +77,12 @@
                 <div class="text-center lg:text-left">
                     <span class="text-xs font-extrabold uppercase tracking-widest text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20" data-key="mission">Mission 90%+ HBSE Board</span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-3 tracking-tight" data-key="banner-title">हरियाणा बोर्ड 12वीं परीक्षा काउंटडाउन</h2>
-                    <p class="text-slate-400 text-sm mt-1 max-w-xl" data-key="banner-subtitle">भौतिकी, रसायन, जीव विज्ञान (Biology), गणित, कंप्यूटर, हिंदी एवं अंग्रेजी की संपूर्ण तैयारी एक स्थान पर।</p>
+                    <p class="text-slate-400 text-sm mt-1 max-w-xl" data-key="banner-subtitle">भौतिकी, रसायन, गणित, कंप्यूटर, हिंदी एवं अंग्रेजी की संपूर्ण तैयारी एक स्थान पर।</p>
                 </div>
                 <!-- Countdown Grid -->
                 <div class="grid grid-cols-4 gap-2.5 sm:gap-4 text-center w-full lg:w-auto">
                     <div class="glass-box p-3 sm:p-4 rounded-xl border border-slate-800 min-w-[70px] sm:min-w-[85px]">
-                        <span id="timer-days" class="block text-2xl sm:text-3xl font-black text-sky-400">00</span>
+                        <span id="timer-days" class="block text-2xl sm:text-3xl font-black text-sky-400">111</span>
                         <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold" data-key="unit-days">दिन</span>
                     </div>
                     <div class="glass-box p-3 sm:p-4 rounded-xl border border-slate-800 min-w-[70px] sm:min-w-[85px]">
@@ -135,16 +103,16 @@
 
         <!-- Main Section Navigation Tabs -->
         <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-slate-800">
-            <button type="button" onclick="switchTab('high-yield')" id="tab-high-yield" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-sky-500 text-slate-950 flex items-center gap-2 whitespace-nowrap shadow-lg shadow-sky-500/20 transition-all">
+            <button onclick="switchTab('high-yield')" id="tab-high-yield" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-sky-500 text-slate-950 flex items-center gap-2 whitespace-nowrap shadow-lg shadow-sky-500/20 transition-all">
                 <i class="fa-solid fa-bullseye"></i> <span data-key="tab-notes">Zero-to-Hero High-Yield Topics</span>
             </button>
-            <button type="button" onclick="switchTab('youtube')" id="tab-youtube" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap border border-slate-800 transition-all">
+            <button onclick="switchTab('youtube')" id="tab-youtube" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap border border-slate-800 transition-all">
                 <i class="fa-solid fa-video text-red-500"></i> <span data-key="tab-youtube">YouTube One-Shot Lectures</span>
             </button>
-            <button type="button" onclick="switchTab('scheduler')" id="tab-scheduler" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap border border-slate-800 transition-all">
+            <button onclick="switchTab('scheduler')" id="tab-scheduler" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap border border-slate-800 transition-all">
                 <i class="fa-solid fa-calendar-check text-emerald-400"></i> <span data-key="tab-schedule">Smart Scheduler</span>
             </button>
-            <button type="button" onclick="switchTab('papers')" id="tab-papers" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap border border-slate-800 transition-all">
+            <button onclick="switchTab('papers')" id="tab-papers" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap border border-slate-800 transition-all">
                 <i class="fa-solid fa-file-pdf text-amber-400"></i> <span data-key="tab-papers">Direct HBSE Board Papers</span>
             </button>
         </div>
@@ -153,3 +121,13 @@
         <div id="content-high-yield" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             <!-- Physics -->
             <div class="glass-card rounded-2xl p-5 border border-slate-800/90 hover:border-sky-500/40 transition">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-lg text-white flex items-center gap-2"><i class="fa-solid fa-bolt text-sky-400"></i> Physics</h3>
+                    <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">Priority 1</span>
+                </div>
+                <ul class="space-y-2.5 text-sm text-slate-300">
+                    <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="accent-sky-500 w-4 h-4 rounded"> Lens Maker Formula & Optics Derivations</li>
+                    <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="accent-sky-500 w-4 h-4 rounded"> Gauss Theorem Applications</li>
+                    <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="accent-sky-500 w-4 h-4 rounded"> AC Generator & Transformers</li>
+                    <li class="flex items-center gap-2.5"><input type="checkbox" onchange="saveProgress()" class="accent-sky-500 w-4 h-4 rounded"> pn Junction Diode & Semiconductors</li>
+                </ul>
