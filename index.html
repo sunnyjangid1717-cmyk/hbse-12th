@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HBSE 12th Merit Engine PRO | Sunny Boss Edition</title>
-    <!-- Tailwind CSS CDN -->
+    <title>HBSE Class 12th Unified Portal | 2026–27 All Streams</title>
     <script src="https://tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -12,128 +11,136 @@
             theme: {
                 extend: {
                     colors: {
-                        cyber: {
-                            dark: '#07090e',
-                            card: '#0f172a',
-                            accent: '#38bdf8',
-                            purple: '#8b5cf6',
-                            emerald: '#10b981',
-                            amber: '#f59e0b',
-                            rose: '#f43f5e'
-                        }
+                        slateDark: '#060913',
+                        cardDark: '#0d1324'
                     }
                 }
             }
         }
     </script>
-    <!-- FontAwesome Icons & Google Fonts -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-cyber-dark text-slate-100 font-['Plus_Jakarta_Sans'] antialiased min-h-screen flex flex-col selection:bg-sky-500 selection:text-slate-950">
+<body class="bg-slateDark text-slate-100 font-['Plus_Jakarta_Sans'] antialiased min-h-screen flex flex-col">
 
-    <!-- Header Navigation -->
-    <header class="sticky top-0 z-50 glass-nav border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-            <!-- Logo Section -->
-            <div class="flex items-center gap-3">
-                <div class="relative group cursor-pointer">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-sky-500 via-purple-600 to-emerald-500 rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-                    <div class="relative bg-cyber-dark border border-slate-700 p-2.5 rounded-xl flex items-center justify-center text-sky-400 font-black text-xl shadow-inner">
-                        <i class="fa-solid fa-atom text-xl animate-spin-slow"></i>
-                    </div>
+    <!-- Top Header -->
+    <header class="sticky top-0 z-50 nav-blur border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex justify-between items-center">
+            <div class="flex items-center gap-3.5">
+                <div id="brand-logo-box" class="w-11 h-11 rounded-xl bg-slate-900 border border-sky-500/30 flex items-center justify-center text-sky-400 shadow-lg overflow-hidden transition-all duration-500">
+                    <i id="live-spinner-icon" class="fa-solid fa-graduation-cap text-xl animate-pulse"></i>
+                    <img id="hbse-official-logo" 
+                         src="https://wikimedia.org" 
+                         alt="HBSE Official Logo" 
+                         class="hidden w-full h-full object-contain p-1"
+                         onerror="this.onerror=null; this.src='https://bseh.org.in';">
                 </div>
                 <div>
-                    <h1 class="font-extrabold text-base sm:text-lg tracking-tight text-white flex items-center gap-2">
-                        HBSE 12th Merit Hub <span class="text-[10px] bg-sky-500/10 text-sky-400 px-2 py-0.5 rounded-full border border-sky-500/20 font-bold">2026-27</span>
-                    </h1>
-                    <p class="text-[10px] text-slate-500 font-mono tracking-widest hover:text-sky-400 transition cursor-default" title="System Architect: Sunny Boss">SYS_ARCH // S.B. 12.05</p>
+                    <div class="flex items-center gap-2">
+                        <h1 class="font-extrabold text-base sm:text-lg text-white tracking-tight">HBSE 12th Academic Hub</h1>
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-500/15 text-sky-400 border border-sky-500/30">2026–27</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">Medical • Non-Medical • Arts • Commerce • CS • Music</p>
                 </div>
             </div>
 
-            <!-- Header Controls -->
-            <div class="flex items-center gap-3">
-                <button type="button" onclick="toggleLanguage()" id="lang-toggle-btn" class="bg-slate-800 hover:bg-slate-700 text-sky-400 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-2">
-                    <i class="fa-solid fa-language text-sm"></i> <span id="lang-label">English</span>
+            <div class="flex items-center gap-2.5">
+                <button type="button" onclick="toggleSiteLanguage()" class="px-3 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-sky-400 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-language"></i>
+                    <span id="lang-switch-text">English</span>
                 </button>
-                <span class="hidden sm:inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 text-xs px-3 py-1.5 rounded-full border border-emerald-500/20 font-semibold">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Live Node
-                </span>
             </div>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-grow w-full space-y-6">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-grow w-full space-y-8">
 
-        <!-- Dynamic Banner Countdown & Exam-Day Motivational Hub -->
-        <section id="hero-countdown-banner" class="glass-card rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-slate-900/90 via-slate-900/40 to-sky-950/30 border border-slate-800 shadow-2xl relative overflow-hidden transition-all duration-700">
-            <div class="flex flex-col lg:flex-row justify-between items-center gap-6 relative z-10">
+        <!-- 1. Detailed HBSE Date-Sheet Countdown & Exam-Day Motivation Hub -->
+        <section id="countdown-hero-card" class="pro-card rounded-2xl p-6 sm:p-8 border border-slate-800 relative overflow-hidden transition-all duration-700">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
                 <div class="text-center lg:text-left max-w-2xl">
-                    <span id="banner-badge" class="text-xs font-extrabold uppercase tracking-widest text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20" data-key="mission">Mission 90%+ HBSE Board</span>
-                    <h2 id="banner-main-title" class="text-2xl sm:text-3xl font-extrabold text-white mt-3 tracking-tight" data-key="banner-title">हरियाणा बोर्ड 12वीं परीक्षा काउंटडाउन</h2>
-                    <p id="banner-main-sub" class="text-slate-400 text-sm mt-1" data-key="banner-subtitle">भौतिकी, रसायन, जीव विज्ञान (Biology), गणित, कंप्यूटर, हिंदी एवं अंग्रेजी की संपूर्ण तैयारी।</p>
-                    
-                    <!-- Live Rotating Hindi & English Motivational Quotes -->
-                    <div class="mt-4 p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
-                        <p id="live-quote-display" class="text-xs sm:text-sm font-medium text-sky-300 quote-fade-in">
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                        <span id="hero-tag" class="text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full bg-sky-500/15 text-sky-400 border border-sky-500/30">
+                            HBSE Board Date Sheet Tracker
+                        </span>
+                        <span id="next-exam-date-badge" class="text-[11px] font-bold px-3 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                            27 Feb 2027 • 12:30 PM
+                        </span>
+                    </div>
+
+                    <h2 id="hero-heading" class="text-2xl sm:text-3xl font-extrabold text-white mt-3">
+                        अगला पेपर: English Core (अंग्रेजी)
+                    </h2>
+                    <p id="hero-subtext" class="text-slate-400 text-xs sm:text-sm mt-1">
+                        परीक्षा समय: दोपहर 12:30 PM से 03:30 PM तक • किसी भी विषय पर क्लिक करके उसका लाइव काउंटडाउन देखें।
+                    </p>
+
+                    <!-- Live Rotating Hindi & English Study Motivation Quotes -->
+                    <div class="mt-4 px-4 py-3 rounded-xl bg-slate-950/75 border border-slate-800">
+                        <p id="rotating-quote-text" class="text-xs sm:text-sm font-medium text-sky-300 quote-show">
                             "क्यों डरें ज़िंदगी में क्या होगा, कुछ ना होगा तो तजुर्बा होगा।" — Dr. Vikas Divyakirti
                         </p>
                     </div>
                 </div>
 
-                <!-- Countdown Grid -->
-                <div id="countdown-grid-box" class="grid grid-cols-4 gap-2.5 sm:gap-4 text-center w-full lg:w-auto">
-                    <div class="glass-box p-3 sm:p-4 rounded-xl border border-slate-800 min-w-[70px] sm:min-w-[85px]">
-                        <span id="timer-days" class="block text-2xl sm:text-3xl font-black text-sky-400">00</span>
-                        <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold" data-key="unit-days">दिन</span>
+                <!-- 4-Box Countdown Timer -->
+                <div id="countdown-boxes" class="w-full lg:w-auto space-y-3">
+                    <div class="grid grid-cols-4 gap-2.5 sm:gap-3.5 text-center">
+                        <div class="timer-tile p-3.5 sm:p-4 rounded-xl">
+                            <span id="t-days" class="block text-2xl sm:text-3xl font-black text-sky-400">00</span>
+                            <span class="text-[10px] font-bold uppercase text-slate-400" data-i18n="days">दिन</span>
+                        </div>
+                        <div class="timer-tile p-3.5 sm:p-4 rounded-xl">
+                            <span id="t-hours" class="block text-2xl sm:text-3xl font-black text-white">00</span>
+                            <span class="text-[10px] font-bold uppercase text-slate-400" data-i18n="hours">घंटे</span>
+                        </div>
+                        <div class="timer-tile p-3.5 sm:p-4 rounded-xl">
+                            <span id="t-mins" class="block text-2xl sm:text-3xl font-black text-white">00</span>
+                            <span class="text-[10px] font-bold uppercase text-slate-400" data-i18n="mins">मिनट</span>
+                        </div>
+                        <div class="timer-tile p-3.5 sm:p-4 rounded-xl">
+                            <span id="t-secs" class="block text-2xl sm:text-3xl font-black text-amber-400">00</span>
+                            <span class="text-[10px] font-bold uppercase text-slate-400" data-i18n="secs">सेकंड</span>
+                        </div>
                     </div>
-                    <div class="glass-box p-3 sm:p-4 rounded-xl border border-slate-800 min-w-[70px] sm:min-w-[85px]">
-                        <span id="timer-hours" class="block text-2xl sm:text-3xl font-black text-white">00</span>
-                        <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold" data-key="unit-hours">घंटे</span>
-                    </div>
-                    <div class="glass-box p-3 sm:p-4 rounded-xl border border-slate-800 min-w-[70px] sm:min-w-[85px]">
-                        <span id="timer-mins" class="block text-2xl sm:text-3xl font-black text-white">00</span>
-                        <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold" data-key="unit-mins">मिनट</span>
-                    </div>
-                    <div class="glass-box p-3 sm:p-4 rounded-xl border border-slate-800 min-w-[70px] sm:min-w-[85px]">
-                        <span id="timer-secs" class="block text-2xl sm:text-3xl font-black text-amber-400">00</span>
-                        <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold" data-key="unit-secs">सेकंड</span>
+
+                    <div class="flex flex-wrap items-center justify-between gap-2 bg-slate-950/70 p-2.5 rounded-xl border border-slate-800">
+                        <select id="countdown-subject-select" onchange="changeTargetExam(this.value)" class="bg-slate-900 text-xs font-bold text-white px-3 py-1.5 rounded-lg border border-slate-700 focus:outline-none focus:border-sky-400 flex-grow"></select>
+                        <button type="button" onclick="toggleDateEditor()" class="px-3 py-1.5 rounded-lg bg-sky-500/15 hover:bg-sky-500/25 text-sky-400 border border-sky-500/30 text-xs font-bold transition">
+                            <i class="fa-solid fa-pen-to-square"></i> Edit Dates
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Exam-Day Special Motivational Video Hub (Unlocks automatically when countdown finishes) -->
-            <div id="exam-day-motivation-hub" class="hidden mt-6 pt-6 border-t border-amber-500/30 relative z-10">
-                <div class="bg-slate-950/80 border-l-4 border-amber-400 p-4 rounded-xl mb-5 text-center">
-                    <h3 class="text-lg sm:text-xl font-extrabold text-amber-300">"क्यों डरें ज़िंदगी में क्या होगा, कुछ ना होगा तो तजुर्बा होगा!"</h3>
-                    <p class="text-xs text-slate-300 mt-1 italic">— Dr. Vikas Divyakirti | Top Padhai Mentors Non-Stop Playlist</p>
+            <!-- Subject-Wise Date Sheet Strip -->
+            <div class="mt-6 pt-5 border-t border-slate-800/80">
+                <div class="flex justify-between items-center mb-3">
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-slate-300">
+                        <i class="fa-solid fa-calendar-days text-sky-400 mr-1"></i> HBSE Class 12th Date Sheet Timeline (Click any subject)
+                    </span>
+                    <span class="text-[11px] text-slate-400 hidden sm:inline">Shift: 12:30 PM – 03:30 PM</span>
                 </div>
+                <div id="datesheet-timeline-strip" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5"></div>
+            </div>
 
-                <!-- Mentor Switcher Tabs -->
-                <div class="flex flex-wrap justify-center gap-2 mb-4">
-                    <button type="button" class="mentor-switch-btn active-mentor px-4 py-2 rounded-xl text-xs font-bold border border-amber-400 bg-amber-400 text-slate-950 transition" onclick="playMentorAtIndex(0, this)">
-                        1. Dr. Vikas Divyakirti (तजुर्बा)
-                    </button>
-                    <button type="button" class="mentor-switch-btn px-4 py-2 rounded-xl text-xs font-bold border border-slate-700 bg-slate-900 text-slate-200 hover:border-amber-400 transition" onclick="playMentorAtIndex(1, this)">
-                        2. Alakh Pandey Sir (पढ़ाई जुनून)
-                    </button>
-                    <button type="button" class="mentor-switch-btn px-4 py-2 rounded-xl text-xs font-bold border border-slate-700 bg-slate-900 text-slate-200 hover:border-amber-400 transition" onclick="playMentorAtIndex(2, this)">
-                        3. Sandeep Maheshwari (पढ़ाई की लत)
-                    </button>
-                    <button type="button" class="mentor-switch-btn px-4 py-2 rounded-xl text-xs font-bold border border-slate-700 bg-slate-900 text-slate-200 hover:border-amber-400 transition" onclick="playMentorAtIndex(3, this)">
-                        4. Khan Sir (Study Focus)
-                    </button>
+            <!-- Date Sheet Customizer Panel -->
+            <div id="datesheet-editor-modal" class="hidden mt-5 p-4 rounded-xl bg-slate-950/95 border border-sky-500/40 space-y-4">
+                <div class="flex justify-between items-center">
+                    <h4 class="text-sm font-extrabold text-sky-400">Update Exact HBSE Date Sheet Dates</h4>
+                    <button type="button" onclick="toggleDateEditor()" class="text-xs text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i> Close</button>
                 </div>
-
-                <!-- Sequential Auto-Play YouTube Video Container -->
-                <div class="max-w-3xl mx-auto rounded-2xl overflow-hidden border border-slate-700 shadow-2xl bg-black aspect-video">
-                    <div id="auto-motivation-player" class="w-full h-full"></div>
+                <div id="date-inputs-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs"></div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" onclick="resetDefaultDates()" class="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold">Reset Default</button>
+                    <button type="button" onclick="saveCustomDates()" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-bold">Save Dates</button>
                 </div>
             </div>
-        </section>
 
-        <!-- Main Section Navigation Tabs -->
-        <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-slate-800">
-            <button type="button" onclick="switchTab('high-yield')" id="tab-high-yield" class="px-5 py-2.5 text-sm font-bold rounded-xl bg-sky-500 text-slate-950 flex items-center gap-2 whitespace-nowrap shadow-lg shadow-sky-500/20 transition-all">
+            <!-- Exam-Day Special Motivational Video Hub (Unlocks automatically when countdown ends) -->
+            <div id="exam-day-motivation-section" class="hidden mt-7 pt-6 border-t border-amber-400/30">
+                <div class="bg-slate-950/85 border-l-4 border-amber-400 p-4 rounded-xl mb-5 text-center">
+                    <h3 class="text-lg sm:text-xl font-extrabold text-amber-300">
+                        "क्यों डरें ज़िंदगी में क्या होगा, कुछ ना होगा तो तजुर्बा होगा!"
+                    </h3>
