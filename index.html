@@ -1,146 +1,144 @@
 <!DOCTYPE html>
-<html lang="hi" class="dark">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HBSE Class 12th Unified Portal | 2026–27 All Streams</title>
-    <script src="https://tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        slateDark: '#060913',
-                        cardDark: '#0d1324'
-                    }
-                }
-            }
-        }
-    </script>
     <link rel="stylesheet" href="https://cloudflare.com">
     <link href="https://googleapis.com" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-slateDark text-slate-100 font-['Plus_Jakarta_Sans'] antialiased min-h-screen flex flex-col">
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #060913;
+            color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .hidden-el { display: none !important; }
+        .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+        .text-cyan { color: #38bdf8; }
+        .text-gold { color: #facc15; }
 
-    <!-- Top Header -->
-    <header class="sticky top-0 z-50 nav-blur border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex justify-between items-center">
-            <div class="flex items-center gap-3.5">
-                <div id="brand-logo-box" class="w-11 h-11 rounded-xl bg-slate-900 border border-sky-500/30 flex items-center justify-center text-sky-400 shadow-lg overflow-hidden transition-all duration-500">
-                    <i id="live-spinner-icon" class="fa-solid fa-graduation-cap text-xl animate-pulse"></i>
-                    <img id="hbse-official-logo" 
-                         src="https://wikimedia.org" 
-                         alt="HBSE Official Logo" 
-                         class="hidden w-full h-full object-contain p-1"
-                         onerror="this.onerror=null; this.src='https://bseh.org.in';">
-                </div>
-                <div>
-                    <div class="flex items-center gap-2">
-                        <h1 class="font-extrabold text-base sm:text-lg text-white tracking-tight">HBSE 12th Academic Hub</h1>
-                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-500/15 text-sky-400 border border-sky-500/30">2026–27</span>
-                    </div>
-                    <p class="text-[11px] text-slate-400">Medical • Non-Medical • Arts • Commerce • CS • Music</p>
-                </div>
-            </div>
+        /* Header */
+        .site-header {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(6, 9, 19, 0.92);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid #1e293b;
+            padding: 14px 0;
+        }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .brand-area { display: flex; align-items: center; gap: 14px; }
+        .logo-box {
+            width: 46px; height: 46px; border-radius: 12px;
+            background: #0f172a; border: 1px solid rgba(56, 189, 248, 0.35);
+            display: flex; align-items: center; justify-content: center;
+            color: #38bdf8; font-size: 1.3rem;
+            box-shadow: 0 4px 16px rgba(56, 189, 248, 0.15);
+            overflow: hidden;
+        }
+        .logo-box.hbse-active-logo { background: #ffffff; border-color: #facc15; padding: 4px; }
+        .hbse-logo-img { width: 100%; height: 100%; object-fit: contain; }
+        .brand-title-row { display: flex; align-items: center; gap: 8px; }
+        .brand-title { font-size: 1.15rem; font-weight: 800; color: #ffffff; }
+        .session-badge {
+            font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px;
+            background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+        .brand-sub { font-size: 0.75rem; color: #94a3b8; margin-top: 2px; }
+        .lang-btn {
+            padding: 8px 14px; border-radius: 10px; background: #1e293b; color: #38bdf8;
+            border: 1px solid #334155; font-size: 0.8rem; font-weight: 700; cursor: pointer;
+            display: flex; align-items: center; gap: 6px; transition: 0.2s;
+        }
+        .lang-btn:hover { background: #334155; }
 
-            <div class="flex items-center gap-2.5">
-                <button type="button" onclick="toggleSiteLanguage()" class="px-3 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-sky-400 flex items-center gap-1.5 transition">
-                    <i class="fa-solid fa-language"></i>
-                    <span id="lang-switch-text">English</span>
-                </button>
-            </div>
-        </div>
-    </header>
+        /* Main Content */
+        .main-content { flex-grow: 1; padding-top: 24px; padding-bottom: 40px; display: flex; flex-direction: column; gap: 28px; }
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-grow w-full space-y-8">
+        /* Hero Countdown Card */
+        .hero-card, .cinema-card {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.88) 0%, rgba(9, 13, 26, 0.96) 100%);
+            border: 1px solid #1e293b; border-radius: 18px; padding: 28px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+        }
+        .hero-top-flex { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; }
+        .hero-info { flex: 1 1 480px; }
+        .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+        .tag-blue {
+            font-size: 0.72rem; font-weight: 800; text-transform: uppercase; padding: 4px 12px;
+            border-radius: 999px; background: rgba(56, 189, 248, 0.14); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+        .tag-gold {
+            font-size: 0.72rem; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+            background: rgba(250, 204, 21, 0.14); color: #fde047; border: 1px solid rgba(250, 204, 21, 0.3);
+        }
+        .tag-red {
+            font-size: 0.72rem; font-weight: 800; text-transform: uppercase; padding: 4px 10px;
+            border-radius: 999px; background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .hero-title { font-size: 1.75rem; font-weight: 800; color: #ffffff; margin-bottom: 6px; }
+        .hero-desc { font-size: 0.88rem; color: #94a3b8; }
+        .quote-box { margin-top: 16px; padding: 12px 16px; border-radius: 12px; background: rgba(6, 9, 19, 0.8); border: 1px solid #1e293b; }
+        #rotating-quote-text { font-size: 0.88rem; font-weight: 500; color: #7dd3fc; transition: opacity 0.45s ease, transform 0.45s ease; }
+        .quote-hide { opacity: 0; transform: translateY(-6px); }
+        .quote-show { opacity: 1; transform: translateY(0); }
 
-        <!-- 1. Detailed HBSE Date-Sheet Countdown & Exam-Day Motivation Hub -->
-        <section id="countdown-hero-card" class="pro-card rounded-2xl p-6 sm:p-8 border border-slate-800 relative overflow-hidden transition-all duration-700">
-            <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
-                <div class="text-center lg:text-left max-w-2xl">
-                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
-                        <span id="hero-tag" class="text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full bg-sky-500/15 text-sky-400 border border-sky-500/30">
-                            HBSE Board Date Sheet Tracker
-                        </span>
-                        <span id="next-exam-date-badge" class="text-[11px] font-bold px-3 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30">
-                            27 Feb 2027 • 12:30 PM
-                        </span>
-                    </div>
+        /* Timer Grid */
+        .timer-wrapper { flex: 0 1 380px; display: flex; flex-direction: column; gap: 12px; }
+        .timer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; text-align: center; }
+        .timer-tile { background: #0f172a; border: 1px solid rgba(56, 189, 248, 0.25); padding: 14px 10px; border-radius: 12px; }
+        .timer-num { display: block; font-size: 1.75rem; font-weight: 800; color: #ffffff; }
+        .timer-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #94a3b8; }
+        .selector-bar { display: flex; gap: 8px; background: rgba(6, 9, 19, 0.8); padding: 8px; border-radius: 12px; border: 1px solid #1e293b; }
+        .exam-select { flex-grow: 1; background: #0f172a; color: #ffffff; border: 1px solid #334155; border-radius: 8px; padding: 6px 10px; font-size: 0.78rem; font-weight: 600; }
+        .edit-date-btn { padding: 6px 12px; border-radius: 8px; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); font-size: 0.78rem; font-weight: 700; cursor: pointer; }
 
-                    <h2 id="hero-heading" class="text-2xl sm:text-3xl font-extrabold text-white mt-3">
-                        अगला पेपर: English Core (अंग्रेजी)
-                    </h2>
-                    <p id="hero-subtext" class="text-slate-400 text-xs sm:text-sm mt-1">
-                        परीक्षा समय: दोपहर 12:30 PM से 03:30 PM तक • किसी भी विषय पर क्लिक करके उसका लाइव काउंटडाउन देखें।
-                    </p>
+        /* Timeline Strip */
+        .timeline-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid #1e293b; }
+        .timeline-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .timeline-title { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; color: #cbd5e1; }
+        .timeline-shift { font-size: 0.75rem; color: #94a3b8; }
+        .timeline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+        .timeline-item { cursor: pointer; padding: 10px 12px; border-radius: 12px; background: rgba(15, 23, 42, 0.85); border: 1px solid #1e293b; transition: 0.2s; }
+        .timeline-item:hover { border-color: #475569; }
+        .timeline-item.selected-exam { background: rgba(56, 189, 248, 0.15); border-color: #38bdf8; }
 
-                    <!-- Live Rotating Hindi & English Study Motivation Quotes -->
-                    <div class="mt-4 px-4 py-3 rounded-xl bg-slate-950/75 border border-slate-800">
-                        <p id="rotating-quote-text" class="text-xs sm:text-sm font-medium text-sky-300 quote-show">
-                            "क्यों डरें ज़िंदगी में क्या होगा, कुछ ना होगा तो तजुर्बा होगा।" — Dr. Vikas Divyakirti
-                        </p>
-                    </div>
-                </div>
+        /* Date Editor */
+        .editor-panel { margin-top: 20px; padding: 18px; border-radius: 14px; background: #060913; border: 1px solid rgba(56, 189, 248, 0.4); }
+        .editor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; color: #38bdf8; font-size: 0.9rem; }
+        .editor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+        .editor-item { background: #0f172a; padding: 10px; border-radius: 10px; border: 1px solid #1e293b; }
+        .editor-item label { display: block; font-size: 0.78rem; font-weight: 700; margin-bottom: 6px; color: #e2e8f0; }
+        .editor-item input { width: 100%; background: #060913; color: #ffffff; border: 1px solid #334155; padding: 6px; border-radius: 6px; font-size: 0.78rem; }
+        .editor-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px; }
 
-                <!-- 4-Box Countdown Timer -->
-                <div id="countdown-boxes" class="w-full lg:w-auto space-y-3">
-                    <div class="grid grid-cols-4 gap-2.5 sm:gap-3.5 text-center">
-                        <div class="timer-tile p-3.5 sm:p-4 rounded-xl">
-                            <span id="t-days" class="block text-2xl sm:text-3xl font-black text-sky-400">00</span>
-                            <span class="text-[10px] font-bold uppercase text-slate-400" data-i18n="days">दिन</span>
-                        </div>
-                        <div class="timer-tile p-3.5 sm:p-4 rounded-xl">
-                            <span id="t-hours" class="block text-2xl sm:text-3xl font-black text-white">00</span>
-                            <span class="text-[10px] font-bold uppercase text-slate-400" data-i18n="hours">घंटे</span>
-                        </div>
-                        <div class="timer-tile p-3.5 sm:p-4 rounded-xl">
-                            <span id="t-mins" class="block text-2xl sm:text-3xl font-black text-white">00</span>
-                            <span class="text-[10px] font-bold uppercase text-slate-400" data-i18n="mins">मिनट</span>
-                        </div>
-                        <div class="timer-tile p-3.5 sm:p-4 rounded-xl">
-                            <span id="t-secs" class="block text-2xl sm:text-3xl font-black text-amber-400">00</span>
-                            <span class="text-[10px] font-bold uppercase text-slate-400" data-i18n="secs">सेकंड</span>
-                        </div>
-                    </div>
+        /* Exam-Day Motivation Mode */
+        .exam-day-active {
+            background: linear-gradient(-45deg, #0f172a, #3b0764, #701a75, #1e1b4b) !important;
+            background-size: 400% 400% !important;
+            animation: gradientShift 8s ease infinite;
+            border-color: rgba(250, 204, 21, 0.55) !important;
+        }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .motivation-hub { margin-top: 24px; padding-top: 22px; border-top: 1px solid rgba(250, 204, 21, 0.3); }
+        .tajurba-box { background: rgba(6, 9, 19, 0.85); border-left: 4px solid #facc15; padding: 16px; border-radius: 12px; text-align: center; margin-bottom: 18px; }
+        .tajurba-box h3 { color: #fde047; font-size: 1.2rem; font-weight: 800; }
+        .tajurba-box p { color: #cbd5e1; font-size: 0.8rem; font-style: italic; margin-top: 4px; }
+        .mentor-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 18px; }
+        .mentor-btn { padding: 8px 16px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; background: #0f172a; color: #e2e8f0; border: 1px solid #334155; cursor: pointer; }
+        .mentor-btn.active-mentor { background: #facc15; color: #060913; border-color: #facc15; }
 
-                    <div class="flex flex-wrap items-center justify-between gap-2 bg-slate-950/70 p-2.5 rounded-xl border border-slate-800">
-                        <select id="countdown-subject-select" onchange="changeTargetExam(this.value)" class="bg-slate-900 text-xs font-bold text-white px-3 py-1.5 rounded-lg border border-slate-700 focus:outline-none focus:border-sky-400 flex-grow"></select>
-                        <button type="button" onclick="toggleDateEditor()" class="px-3 py-1.5 rounded-lg bg-sky-500/15 hover:bg-sky-500/25 text-sky-400 border border-sky-500/30 text-xs font-bold transition">
-                            <i class="fa-solid fa-pen-to-square"></i> Edit Dates
-                        </button>
-                    </div>
-                </div>
-            </div>
+        /* Cinema Video Box */
+        .cinema-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .cinema-title { font-size: 1.15rem; font-weight: 800; color: #ffffff; margin-top: 4px; }
+        .video-aspect-box { position: relative; width: 100%; max-width: 820px; margin: 0 auto; padding-bottom: 50%; height: 0; background: #000000; border-radius: 14px; overflow: hidden; border: 1px solid #334155; }
+        .video-aspect-box iframe, .video-aspect-box #yt-motivation-playlist { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-            <!-- Subject-Wise Date Sheet Strip -->
-            <div class="mt-6 pt-5 border-t border-slate-800/80">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="text-xs font-extrabold uppercase tracking-wider text-slate-300">
-                        <i class="fa-solid fa-calendar-days text-sky-400 mr-1"></i> HBSE Class 12th Date Sheet Timeline (Click any subject)
-                    </span>
-                    <span class="text-[11px] text-slate-400 hidden sm:inline">Shift: 12:30 PM – 03:30 PM</span>
-                </div>
-                <div id="datesheet-timeline-strip" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5"></div>
-            </div>
-
-            <!-- Date Sheet Customizer Panel -->
-            <div id="datesheet-editor-modal" class="hidden mt-5 p-4 rounded-xl bg-slate-950/95 border border-sky-500/40 space-y-4">
-                <div class="flex justify-between items-center">
-                    <h4 class="text-sm font-extrabold text-sky-400">Update Exact HBSE Date Sheet Dates</h4>
-                    <button type="button" onclick="toggleDateEditor()" class="text-xs text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i> Close</button>
-                </div>
-                <div id="date-inputs-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs"></div>
-                <div class="flex justify-end gap-2">
-                    <button type="button" onclick="resetDefaultDates()" class="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold">Reset Default</button>
-                    <button type="button" onclick="saveCustomDates()" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-bold">Save Dates</button>
-                </div>
-            </div>
-
-            <!-- Exam-Day Special Motivational Video Hub (Unlocks automatically when countdown ends) -->
-            <div id="exam-day-motivation-section" class="hidden mt-7 pt-6 border-t border-amber-400/30">
-                <div class="bg-slate-950/85 border-l-4 border-amber-400 p-4 rounded-xl mb-5 text-center">
-                    <h3 class="text-lg sm:text-xl font-extrabold text-amber-300">
-                        "क्यों डरें ज़िंदगी में क्या होगा, कुछ ना होगा तो तजुर्बा होगा!"
-                    </h3>
+        /* Filter Toolbar & Subjects Grid */
+        .filter-toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 22px; }
+        .stream-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
