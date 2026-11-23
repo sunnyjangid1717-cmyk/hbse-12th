@@ -1,94 +1,58 @@
-/* Professional Dark Slate & Glassmorphic Academic Theme */
+/* Custom Cyber-Glass Theme & Clean Animations */
 body {
-    background-color: #060913;
+    background-color: #07090e;
     color: #f8fafc;
     font-family: 'Plus Jakarta Sans', sans-serif;
     overflow-x: hidden;
 }
 
-.nav-blur {
-    background: rgba(6, 9, 19, 0.88);
+.glass-nav {
+    background: rgba(7, 9, 14, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
 }
 
-.pro-card {
-    background: linear-gradient(145deg, rgba(15, 23, 42, 0.74) 0%, rgba(9, 13, 26, 0.94) 100%);
+.glass-card {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(7, 9, 14, 0.8) 100%);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-.timer-tile {
-    background: rgba(15, 23, 42, 0.9);
-    border: 1px solid rgba(56, 189, 248, 0.2);
+.glass-box {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
 }
 
-/* Smooth Quote Animation */
-#rotating-quote-text {
-    transition: opacity 0.45s ease, transform 0.45s ease;
+/* Custom Slow Spin Animation for Logo */
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
-.quote-hide {
-    opacity: 0;
-    transform: translateY(-6px);
-}
-.quote-show {
-    opacity: 1;
-    transform: translateY(0);
+.animate-spin-slow {
+    animation: spinSlow 12s linear infinite;
 }
 
-/* Exam-Day Motivational Banner Glow */
-.exam-day-active {
-    background: linear-gradient(-45deg, #0f172a, #3b0764, #701a75, #1e1b4b) !important;
-    background-size: 400% 400% !important;
-    animation: gradientShift 8s ease infinite;
-    border-color: rgba(250, 204, 21, 0.55) !important;
-    box-shadow: 0 0 40px rgba(250, 204, 21, 0.22) !important;
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #07090e;
+}
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #38bdf8;
 }
 
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
 }
-
-/* Studying Boy Footer Animation */
-.boy-head {
-    transform-origin: 75px 68px;
-    animation: headNod 3.5s ease-in-out infinite;
+.scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
-
-.boy-arm {
-    transform-origin: 75px 94px;
-    animation: handWrite 1.4s ease-in-out infinite;
-}
-
-.float-dot {
-    animation: floatUp 3s ease-in-out infinite;
-}
-.float-dot.d2 { animation-delay: 1s; }
-.float-dot.d3 { animation-delay: 2s; }
-
-@keyframes headNod {
-    0%, 100% { transform: rotate(0deg); }
-    50% { transform: rotate(4deg); }
-}
-
-@keyframes handWrite {
-    0%, 100% { transform: rotate(0deg); }
-    50% { transform: rotate(-3deg); }
-}
-
-@keyframes floatUp {
-    0% { opacity: 0; transform: translateY(4px); }
-    50% { opacity: 0.9; transform: translateY(-6px); }
-    100% { opacity: 0; transform: translateY(-14px); }
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: #060913; }
-::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
-.scrollbar-none::-webkit-scrollbar { display: none; }
-.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
