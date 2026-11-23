@@ -1,1 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101b35">
+  <meta name="description" content="A focused, bilingual learning portal for board exam preparation.">
+  <title>Northstar Learning | Study Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="cosmicCanvas" class="cosmic-canvas" aria-hidden="true"></canvas>
+  <canvas id="studyCanvas" class="study-canvas" aria-hidden="true"></canvas>
+  <div id="studyModeBadge" class="study-mode-badge" aria-live="polite"><span class="study-mode-pulse"></span><span id="studyModeText">COSMIC LEARNING MODE</span></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Northstar Learning home">
+      <span class="brand-mark">✦</span>
+      <span><b>Northstar</b><small>LEARNING PORTAL</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="#home" data-i18n="navHome">Home</a>
+      <a href="#subjects" data-i18n="navSubjects">Subjects</a>
+      <a href="#papers" data-i18n="navPapers">HBSE Papers</a>
+      <a href="#planner" data-i18n="navPlanner">Study Planner</a>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle theme" title="Toggle theme">◐</button>
+      <button class="lang-btn" id="langBtn">हिन्दी</button>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
+  </header>
 
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#home" data-i18n="navHome">Home</a>
+    <a href="#subjects" data-i18n="navSubjects">Subjects</a>
+    <a href="#papers" data-i18n="navPapers">HBSE Papers</a>
+    <a href="#planner" data-i18n="navPlanner">Study Planner</a>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <span class="eyebrow" data-i18n="heroEyebrow">YOUR BOARD EXAM STUDY COMPANION</span>
+        <h1 data-i18n="heroTitle">Learn with focus.<br><em>Prepare with confidence.</em></h1>
+        <p data-i18n="heroText">A clean place for chapter-wise learning, video lessons, notes and board exam papers.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#subjects" data-i18n="exploreSubjects">Explore subjects</a>
+          <a class="btn btn-outline" href="#papers" data-i18n="findPapers">Find papers</a>
+        </div>
+        <div class="hero-note"><span class="live-dot"></span><span data-i18n="noSiteAds">No third-party ads or pop-up promotions on this website</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="book-stack"><span>✦</span><b>LEARN</b><small>EVERY DAY</small></div>
+        <div class="floating-chip chip-one">✎ Notes</div>
+        <div class="floating-chip chip-two">▶ Lessons</div>
+        <div class="floating-chip chip-three">✓ Progress</div>
+      </div>
+    </section>
+
+    <section class="countdown-section">
+      <div class="section-top">
+        <div><span class="eyebrow" data-i18n="countEyebrow">KEEP YOUR GOAL IN SIGHT</span><h2 data-i18n="countTitle">HBSE Board Exam Countdown</h2></div>
+        <span class="live-pill"><span class="live-dot"></span> LIVE</span>
+      </div>
+      <p class="muted" id="examDateLabel">Exam date will be set after checking the official HBSE date sheet.</p>
+      <div class="timer-grid" id="timerGrid">
+        <div class="timer-cell"><strong id="days">--</strong><span data-i18n="days">Days</span></div>
+        <div class="timer-cell"><strong id="hours">--</strong><span data-i18n="hours">Hours</span></div>
+        <div class="timer-cell"><strong id="minutes">--</strong><span data-i18n="minutes">Minutes</span></div>
+        <div class="timer-cell"><strong id="seconds">--</strong><span data-i18n="seconds">Seconds</span></div>
+      </div>
+      <button class="text-btn" id="detailsBtn" aria-expanded="false" data-i18n="details">View detailed time remaining ↓</button>
+      <div class="count-details hidden" id="countDetails">
+        <div><b id="totalDays">--</b><span data-i18n="totalDays">Total days</span></div>
+        <div><b id="weeks">--</b><span data-i18n="totalWeeks">Total weeks</span></div>
+        <div><b id="months">--</b><span data-i18n="calendarMonths">Calendar months + days</span></div>
+        <div><b id="totalHours">--</b><span data-i18n="totalHours">Total hours</span></div>
+        <div><b id="totalMinutes">--</b><span data-i18n="totalMinutes">Total minutes</span></div>
+      </div>
+    </section>
+
+    <section class="motivation-strip" aria-label="Study motivation">
+      <div class="motivation-icon">✦</div>
+      <div><span class="eyebrow">SMALL STEPS. BIG RESULTS.</span><h2>Make today count.</h2><p>One concept, one practice set, one step closer to your goal.</p></div>
+      <a class="btn btn-primary" href="#planner">Plan my study</a>
+    </section>
+
+    <section class="section" id="subjects">
+      <div class="section-heading">
+        <span class="eyebrow" data-i18n="learning">LEARNING SPACE</span>
+        <h2 data-i18n="chooseStream">Choose your stream</h2>
+        <p data-i18n="streamText">Choose a stream to see its subjects and learning resources.</p>
+      </div>
+      <div class="stream-tabs" role="group" aria-label="Choose stream">
+        <button class="stream-tab active" data-stream="PCM">⚡ PCM</button>
+        <button class="stream-tab" data-stream="PCB">🧬 PCB</button>
+        <button class="stream-tab" data-stream="CS">💻 Computer Science</button>
+      </div>
+      <div class="subject-grid" id="subjectGrid"></div>
+    </section>
+
+    <section class="section soft-section" id="papers">
+      <div class="section-heading">
+        <span class="eyebrow" data-i18n="paperLibrary">PAPER LIBRARY</span>
+        <h2 data-i18n="hbseResources">HBSE sample papers & previous papers</h2>
+        <p data-i18n="paperText">Choose a class, year and subject. A linked PDF opens directly without visiting the board homepage.</p>
+      </div>
+      <div class="filter-panel">
+        <label><span data-i18n="classLabel">Class</span>
+          <select id="classSelect"><option value="12">Class 12</option><option value="10">Class 10</option></select>
+        </label>
+        <label><span data-i18n="yearLabel">Year</span>
+          <select id="yearSelect"></select>
+        </label>
+        <label><span data-i18n="subjectLabel">Subject</span>
+          <select id="paperSubject"></select>
+        </label>
+        <label><span data-i18n="paperTypeLabel">Paper type</span>
+          <select id="paperType"><option value="sample">Sample paper</option><option value="previous">Previous year paper</option></select>
+        </label>
+        <button class="btn btn-primary" id="openPaperBtn" data-i18n="openPdf">Open PDF</button>
+      </div>
+      <p class="small-note" id="paperStatus">Add verified PDF URLs in script.js → PAPER_LINKS.</p>
+    </section>
+
+    <section class="section" id="planner">
+      <div class="section-heading">
+        <span class="eyebrow" data-i18n="yourRoutine">YOUR ROUTINE</span>
+        <h2 data-i18n="studyPlanner">Study planner & progress</h2>
+        <p data-i18n="plannerText">Tick off your daily study goals. Your checklist stays saved on this device.</p>
+      </div>
+      <div class="planner-layout">
+        <div class="planner-card">
+          <h3 data-i18n="todaysGoals">Today's goals</h3>
+          <form id="goalForm" class="goal-form">
+            <input id="goalInput" type="text" maxlength="100" placeholder="Add a study goal..." aria-label="Study goal">
+            <button class="btn btn-primary" type="submit" data-i18n="addGoal">Add</button>
+          </form>
+          <ul id="goalList" class="goal-list"></ul>
+        </div>
+        <div class="planner-card progress-card">
+          <h3 data-i18n="learningProgress">Learning progress</h3>
+          <div class="progress-ring" id="progressRing"><div><b id="progressPercent">0%</b><small data-i18n="completed">completed</small></div></div>
+          <p class="muted" id="progressText">0 of 0 goals completed</p>
+          <button class="text-btn" id="resetGoals" data-i18n="resetGoals">Reset today's goals</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section resources-section">
+      <div class="section-heading">
+        <span class="eyebrow" data-i18n="quickAccess">QUICK ACCESS</span>
+        <h2 data-i18n="studyResources">Study resources</h2>
+      </div>
+      <div class="resource-grid">
+        <a class="resource-card" href="#subjects"><span>▶</span><b data-i18n="videoLessons">Video lessons</b><small data-i18n="videoDesc">Topic-wise teacher lectures</small></a>
+        <a class="resource-card" href="#papers"><span>▤</span><b data-i18n="samplePapers">Sample papers</b><small data-i18n="sampleDesc">Practice for board exams</small></a>
+        <a class="resource-card" href="#papers"><span>▣</span><b data-i18n="previousPapers">Previous papers</b><small data-i18n="previousDesc">Past board question papers</small></a>
+        <a class="resource-card" href="#subjects"><span>✎</span><b data-i18n="notesPdfs">Notes & PDFs</b><small data-i18n="notesDesc">Chapter-wise revision material</small></a>
+      </div>
+    </section>
+
+    <section class="quote-ticker" aria-label="Motivational quotes in English and Hindi">
+      <div class="ticker-heading">
+        <span class="ticker-spark">✦</span>
+        <span><b>DAILY MOTIVATION</b><small>हर दिन एक नई प्रेरणा</small></span>
+      </div>
+      <div class="ticker-window">
+        <div class="ticker-track">
+          <div class="ticker-group">
+            <span class="ticker-quote">Dream big. Start small. Act now.</span><i>✦</i>
+            <span class="ticker-quote" lang="hi">बड़े सपने देखो, छोटी शुरुआत करो और आज ही कदम बढ़ाओ।</span><i>✦</i>
+            <span class="ticker-quote">Consistency turns effort into achievement.</span><i>✦</i>
+            <span class="ticker-quote" lang="hi">लगातार मेहनत ही सफलता की चाबी है।</span><i>✦</i>
+            <span class="ticker-quote">Your future is created by what you do today.</span><i>✦</i>
+            <span class="ticker-quote" lang="hi">तुम्हारा आज का प्रयास तुम्हारा आने वाला कल बनाता है।</span><i>✦</i>
+          </div>
+          <div class="ticker-group" aria-hidden="true">
+            <span class="ticker-quote">Dream big. Start small. Act now.</span><i>✦</i>
+            <span class="ticker-quote" lang="hi">बड़े सपने देखो, छोटी शुरुआत करो और आज ही कदम बढ़ाओ।</span><i>✦</i>
+            <span class="ticker-quote">Consistency turns effort into achievement.</span><i>✦</i>
+            <span class="ticker-quote" lang="hi">लगातार मेहनत ही सफलता की चाबी है।</span><i>✦</i>
+            <span class="ticker-quote">Your future is created by what you do today.</span><i>✦</i>
+            <span class="ticker-quote" lang="hi">तुम्हारा आज का प्रयास तुम्हारा आने वाला कल बनाता है।</span><i>✦</i>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand footer-brand" href="#home"><span class="brand-mark">✦</span><span><b>Northstar</b><small>LEARNING PORTAL</small></span></a>
+    <p data-i18n="footerLine">Learn today. Lead tomorrow.</p>
+    <small>© <span id="yearNow"></span> Northstar Learning. <span data-i18n="rights">All rights reserved.</span></small>
+    <small class="footer-note" data-i18n="footerNote">Independent study resource. Not an official HBSE website.</small>
+  </footer>
+
+  <dialog id="topicDialog" class="topic-dialog">
+    <div class="dialog-head"><div><span class="eyebrow" id="dialogSubject">SUBJECT</span><h2 id="dialogTitle">Topic title</h2></div><button class="icon-btn" id="closeDialog" aria-label="Close">✕</button></div>
+    <div class="video-frame" id="videoFrame"><p>Video lecture will appear here after a valid YouTube video ID is added.</p></div>
+    <div class="dialog-actions"><a id="youtubeFallback" class="btn btn-outline" href="#" target="_blank" rel="noopener">Open on YouTube</a><button class="btn btn-primary" id="bookmarkBtn">☆ Bookmark topic</button></div>
+    <p class="small-note" id="dialogNote">YouTube controls its own ads and playback. This site does not inject ads or bypass YouTube advertising.</p>
+  </dialog>
+
+  <script src="script.js"></script>
+  <script src="cosmic.js"></script>
+  <script src="topic-atmosphere.js"></script>
+</body>
+</html>
